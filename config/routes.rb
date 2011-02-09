@@ -1,8 +1,12 @@
 SampleApp::Application.routes.draw do
-  get "pages/home"
-  get "pages/contact"
-  get "pages/about"
+  root :to => "pages#home"  
+  
+  match '/contact', :to => 'pages#contact'
+  match '/about', :to => 'pages#about'
+  match '/help', :to => 'pages#help'
+  
 
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -46,7 +50,7 @@ SampleApp::Application.routes.draw do
   # Sample resource route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
+  #     # (app/controllers/rooadmin/products_controller.rb)
   #     resources :products
   #   end
 
