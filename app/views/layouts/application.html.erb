@@ -11,6 +11,13 @@
 		<%= render 'layouts/header' %>
 
 		<section class="round">
+			<% flash.each do |key, value| %>  
+				<div class="flash <%= key %>"><%= value %></div>
+			<!-- no =% on flash because iterating through Ruby, i.e., "script"-->
+			<!-- yes =% on key and value because interpolating variables -->
+			<!-- n.b. key within "flash " so we can style different key msg -->
+			<% end %>
+			
 			<%= yield %>
 		</section>
 		

@@ -1,0 +1,17 @@
+<% if @user.errors.any? %>  
+<!-- don't need %= because embedded script/loop within other block -->
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@user.errors.count, "error") %>  <!-- need %= because rendering ruby-->
+      prohibited this user from being saved:
+    </h2>
+  
+  	<p>There were problems with the following fields:</p> 
+    	<ul>
+    		<% @user.errors.full_messages.each do |message| %>    
+        	<li> <%= message %> </li>  <!-- need %= because rendering ruby-->
+    		<% end %>
+    	</ul>
+  </div>
+  
+<% end %>

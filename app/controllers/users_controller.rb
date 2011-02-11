@@ -11,6 +11,22 @@ class UsersController < ApplicationController
     @title = "Sign Up"
   end
 
-
+  def create
+    #raise params[:user].inspect
+    
+    @user = User.new(params[:user])
+    if @user.save
+      # handle a successful save.
+      redirect_to user_path(@user), :flash => { :success => "Welcome to KIUBO!" }
+  
+      # this also works:
+      # flash[:success] = "Welcome to KIUBO!"
+      # redirect_to user_path(@user)
+      
+    else
+      @title = "Sign Up"
+      render 'new'
+    end
+  end
   
 end
