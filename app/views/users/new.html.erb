@@ -1,2 +1,32 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<!-- Using a Rails Form Helper -->
+
+<h1>Sign Up</h1>
+
+<%= form_for(@user) do |f| %>
+	<div class="field">
+		<%= f.label :name %>  <br />
+		<%= f.text_field :name %>
+	</div>
+
+	<div class="field">
+		<%= f.label :email %>  <br />
+		<%= f.text_field :email %>
+	</div>
+
+	<div class="field">
+		<%= f.label :password %>  <br />  
+		<%= f.password_field :password %>  
+		<!-- cannot use f.text_field because it shows password when typing -->
+	</div>	
+
+	<div class="field">
+		<%= f.label :password_confirmation, "Confirm Password" %>  <br />
+		<%= f.password_field :name %>
+	</div>
+
+	<div class="actions">
+		<%= f.submit "Sign Up" %>  
+	</div>
+
+<% end %>
+<!-- note that the second embedded Ruby does not have = sign ...-->
