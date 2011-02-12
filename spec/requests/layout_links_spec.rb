@@ -26,6 +26,11 @@ describe "LayoutLinks" do
     get '/signup'
     response.should have_selector('title', :content => "Sign Up")
   end
+  
+  it "should have a Signup page at '/signin'" do
+    get '/signin'
+    response.should have_selector('title', :content => "Sign In")
+  end
 
   it "should have the right links on the layout" do
     visit root_path
