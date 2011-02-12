@@ -51,6 +51,18 @@ class User < ActiveRecord::Base
      # This method handles two cases (1. invalid email and 2. a successful match) with explicit 
      # return keywords, and handles the third case (password mismatch) implicitly, 
      # since in that case we reach the end of the method, which automatically returns nil.   
+  # ------------------------------------------------------------------------
+  # ------------------------------------------------------------------------
+  # BELOW -- additions for authenticating sign-in users from Lesson #9
+
+  def authenticate_with_salt(id, cookie_salt)
+     user = find_by_id(id)
+     (user && user.salt == cookie_salt) ? user : nil
+     # IF (boolean AND boolean)? return value for TRUE : return value for FALSE
+     
+  end #authenticate_with_salt
+  
+  
   end
   
   private

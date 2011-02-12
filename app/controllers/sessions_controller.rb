@@ -15,6 +15,8 @@ class SessionsController < ApplicationController
       render 'new'  # allows me to re-render the "new" page after a failed submit
     else
       # Handle successful signin.
+      sign_in user
+      redirect_to user
     end
     
   end
