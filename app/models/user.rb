@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
      # inside a self class method you can omit the "User." prefix.  It's implicit.
      return nil  if  user.nil?
      return user if user.has_password?(submitted_password) #returns true if submitted pw == encrypted pw
-     
+  end  
      # This method handles two cases (1. invalid email and 2. a successful match) with explicit 
      # return keywords, and handles the third case (password mismatch) implicitly, 
      # since in that case we reach the end of the method, which automatically returns nil.   
@@ -55,16 +55,13 @@ class User < ActiveRecord::Base
   # ------------------------------------------------------------------------
   # BELOW -- additions for authenticating sign-in users from Lesson #9
 
-  def authenticate_with_salt(id, cookie_salt)
+  def self.authenticate_with_salt(id, cookie_salt)
      user = find_by_id(id)
      (user && user.salt == cookie_salt) ? user : nil
      # IF (boolean AND boolean)? return value for TRUE : return value for FALSE
-     
-  end #authenticate_with_salt
+  end 
   
-  
-  end
-  
+      
   private
     def encrypt_password
         self.salt = make_salt if new_record?  # make a salt only if it's a new record

@@ -3,7 +3,7 @@ module SessionsHelper
   # but remember that HELPERS are not usually available in the controllers; they're
   # available by default in the VIEWS html.erb.  We need to include it in
   # the Applications Controller so that it gets inherited to every other controller. 
-  
+
   def sign_in(user)
     cookies.permanent.signed[:remember_token] = [user.id, user.salt]
     # cookies.permanent is putting a permanent, encrypted cookie "remember_token" 
@@ -23,7 +23,14 @@ module SessionsHelper
   def signed_in?
     !current_user.nil?       
   end
+    
+  def sign_out
+    cookies.delete(:remember_token)
+    self.current_user = nil
+  end
   
+  
+  #---------  
   private 
     def user_from_remember_token
       User.authenticate_with_salt(*remember_token)
@@ -33,5 +40,6 @@ module SessionsHelper
     def remember_token 
       cookies.signed[:remember_token] || [nil, nil]
     end #remember_token
+  
   
 end
