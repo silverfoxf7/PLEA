@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+  before_filter :authenticate, :only => [:edit, :update]
+  # used to effectuate a redirect to signin if trying to access unauth pages
+  # but need an options hash to limit only some pages
+  
+
   def show
     @user = User.find(params[:id])
     @title = @user.name
@@ -45,5 +50,12 @@ class UsersController < ApplicationController
      render 'edit'
     end
   end
+#---------------------------------
+  private
+    def authenticate
+      deny_access unless signed_in?
+      # deny_access is located in the sessions_helper for refactoring purposes
+    end
+    
   
 end
