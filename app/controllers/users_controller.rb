@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :authenticate, :only => [:edit, :update]
   # used to effectuate a redirect to signin if trying to access unauth pages
   # but need an options hash to limit only some pages
-  
+  before_filter :correct_user, :only => [:edit, :update]
 
   def show
     @user = User.find(params[:id])
@@ -56,6 +56,11 @@ class UsersController < ApplicationController
       deny_access unless signed_in?
       # deny_access is located in the sessions_helper for refactoring purposes
     end
-    
+  
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_path) unless current_user?(@user)
+      # unless @user == current_user is very common.  we'll define as method current_user?(@user)
+    end
   
 end
