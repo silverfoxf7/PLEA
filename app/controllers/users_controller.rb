@@ -1,9 +1,14 @@
 class UsersController < ApplicationController
 
-  before_filter :authenticate, :only => [:edit, :update]
+  before_filter :authenticate, :only => [:index, :edit, :update]
   # used to effectuate a redirect to signin if trying to access unauth pages
   # but need an options hash to limit only some pages
   before_filter :correct_user, :only => [:edit, :update]
+  
+  def index
+    @users = User.all
+    @title = "All Users"
+  end
 
   def show
     @user = User.find(params[:id])
