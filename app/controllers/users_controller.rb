@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
 
-  before_filter :authenticate, :only => [:index, :edit, :update]
+  before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
   # used to effectuate a redirect to signin if trying to access unauth pages
   # but need an options hash to limit only some pages
   before_filter :correct_user, :only => [:edit, :update]
+  before_filter :admin_user,   :only => :destroy
   
   def index
 #    @users = User.all
@@ -50,7 +51,9 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = User.find(params[:id])
+#    @user = User.find(params[:id])
+#    got rid of these because the before_filter is running before :edit and :update;
+#    thus don't need this assignment.
     if @user.update_attributes(params[:user])
       redirect_to @user, :flash => { :success => "Profile updated." }
     else
@@ -58,6 +61,13 @@ class UsersController < ApplicationController
      render 'edit'
     end
   end
+  
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User destroyed."
+    redirect_to users_path
+  end
+  
 #---------------------------------
   private
     def authenticate
@@ -69,6 +79,11 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
       # unless @user == current_user is very common.  we'll define as method current_user?(@user)
+    end
+    
+    def admin_user
+      user = User.find(params[:id])
+      redirect_to(root_path) if (!current_user.admin? || current_user?(user))
     end
   
 end

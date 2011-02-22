@@ -158,6 +158,30 @@ describe User do
       
     end
       
+      describe "admin attribute" do
+
+        before(:each) do
+          @user = User.create!(@attr)
+        end
+
+        it "should respond to admin" do
+          @user.should respond_to(:admin)
+          # will only pass if the database-table has a column ":admin"
+        end
+
+        it "should not be admin by default" do
+          @user.should_not be_admin
+          # same as -->  @user.admin?.should_not be_true
+          # we got this test to pass by making the default "false" in the migrate .rb file
+        end
+
+        it "should be convertible to admin" do
+          @user.toggle!(:admin)
+          # boolean columsn automatically get the toggle function
+          @user.should be_admin
+        end
+      end
+      
 end
 
 
