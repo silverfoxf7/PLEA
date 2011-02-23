@@ -29,9 +29,19 @@ describe Micropost do
   end
 
   describe "validations" do
-    it "should ..." do
-      #left off at 31:13 of Lesson #11
+    it "should have a user id" do
+      Micropost.new(@attr).should_not be_valid
+      #why?
     end
+    
+    it "should require nonblank content" do
+      @user.microposts.build(:content => "   ").should_not be_valid
+    end
+    
+    it "should reject long content" do
+      @user.microposts.build(:content => "a" * 141).should_not be_valid
+    end
+    
   end
 
 end
