@@ -28,4 +28,10 @@ describe Micropost do
     end
   end
 
+  describe "validations" do
+    it "should ..." do
+      #left off at 31:13 of Lesson #11
+    end
+  end
+
 end
