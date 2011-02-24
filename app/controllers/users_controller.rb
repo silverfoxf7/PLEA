@@ -70,10 +70,13 @@ class UsersController < ApplicationController
   
 #---------------------------------
   private
-    def authenticate
-      deny_access unless signed_in?
-      # deny_access is located in the sessions_helper for refactoring purposes
-    end
+    # def authenticate
+    #   deny_access unless signed_in?
+    #   # deny_access is located in the sessions_helper for refactoring purposes
+    # end
+    
+    # After Chapter 11 we moved this authenticate method to the Sessions helper so it could be used
+    # by the microposts_controller.rb
   
     def correct_user
       @user = User.find(params[:id])

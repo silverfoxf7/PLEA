@@ -1,9 +1,9 @@
 SampleApp::Application.routes.draw do
  
-  resources :sessions, :only => [:new, :create, :destroy]
+  resources :sessions,   :only => [:new, :create, :destroy]
   # the additional argument limits
-
   resources :users
+  resources :microposts, :only => [:create, :destroy]
 
   root :to => "pages#home"  
   
