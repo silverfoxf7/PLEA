@@ -18,7 +18,20 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation  
   #allows users to enter/change their name & email, pswd
 
-  has_many :microposts, :dependent => :destroy
+  has_many :microposts,    :dependent => :destroy
+  has_many :relationships, :dependent => :destroy,
+                           :foreign_key => "follower_id"
+                          # hardwires the key (id) from one table to another 
+  has_many :reverse_relationships, :dependent => :destroy,
+                           :foreign_key => "followed_id",
+                           :class_name => "Relationship"
+                           # class_name tells Rails to fake the reverse_relationships model
+                          
+  has_many :following, :through => :relationships, 
+                       :source => :followed
+  has_many :followers, :through => :reverse_relationships, 
+                       :source => :follower
+                       # :source tells Rails which key column to look at                  
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -40,6 +53,23 @@ class User < ActiveRecord::Base
   def feed
     Micropost.where("user_id = ?", self.id)    
   end
+  
+  def following?(followed)
+    self.relationships.find_by_followed_id(followed)
+    # will return true if user if following another user
+    # nil will return false; finding anything will be true
+  end
+  
+  def follow!(followed)
+    relationships.create!(:followed_id => followed.id)
+    # will create new row in Relationships table
+    # only followed_id has to be set because follower_id is incremented automatically
+  end
+  
+  def unfollow!(followed)
+    relationships.find_by_followed_id(followed).destroy    
+  end
+  
   
   def has_password?(submitted_password)
     # compare submtted password with the encrypted password.
