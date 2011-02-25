@@ -125,6 +125,14 @@ describe UsersController do
       # have_selector is not smart enough to convert .count into a string --> need .to_s
     end
     
+    describe "when signed in as another user" do
+      it "should be successful" do
+        test_sign_in(Factory(:user, :email => Factory.next(:email)))
+        get :show, :id => @user
+        response.should be_success
+      end
+    end
+    
   end
 
   describe "GET 'new'" do

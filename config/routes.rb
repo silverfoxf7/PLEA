@@ -1,10 +1,17 @@
 SampleApp::Application.routes.draw do
  
+  resources :users do
+    member do
+      get :following, :followers
+    end
+    # gets pages for users/1/followers, . . ., users/199/followers . . . 
+  end
+ 
   resources :sessions,   :only => [:new, :create, :destroy]
-  # the additional argument limits
-  resources :users
+  # the additional argument limits which actions the resource can take
   resources :microposts, :only => [:create, :destroy]
-
+  resources :relationships, :only => [:create, :destroy]
+  
   root :to => "pages#home"  
   
   match '/contact',   :to => 'pages#contact'
