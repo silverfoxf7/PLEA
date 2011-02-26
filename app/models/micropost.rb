@@ -23,4 +23,15 @@ class Micropost < ActiveRecord::Base
   # sets the order;  here, descending order of when created, 
   # pass columnn and direction of order
   
+  scope :from_users_followed_by, lambda { |user| followed_by(user) }
+  
+  private
+    def self.followed_by(user)
+      followed_ids = user.following.map(&:id).join(", ")
+      where("user_id IN (#{followed_ids}) OR user_id = :user_id", 
+                                                       :user_id => user)  
+    end
 end
+
+
+
