@@ -6,6 +6,15 @@
 				<%= @user.name %>
 			</h1>
 			<%= render 'follow_form' if signed_in? %>
+
+
+			<% if @user.jobposts.any? %>
+				<table class="jobposts" summary="User jobposts"> 
+					<%= render @jobposts %>
+				</table>
+				<%= will_paginate @jobposts %>
+			<% end %>
+
 			<% if @user.microposts.any? %>
 				<table class="microposts" summary="User microposts"> 
 					<%= render @microposts %>
@@ -19,6 +28,7 @@
 		<td class="sidebar round">
 			<strong>Name</strong> <%= @user.name %> <br />
 			<strong>URL</strong>  <%= link_to user_path(@user), @user %> <br />
+			<strong>Number of Projects</strong> <%= @user.jobposts.count %>
 			<strong>Microposts</strong> <%= @user.microposts.count %>
 			<%= render 'shared/stats' %>
 		</td>

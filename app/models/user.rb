@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation  
   #allows users to enter/change their name & email, pswd
 
+  has_many :jobposts,      :dependent => :destroy
   has_many :microposts,    :dependent => :destroy
   has_many :relationships, :dependent => :destroy,
                            :foreign_key => "follower_id"
@@ -52,6 +53,10 @@ class User < ActiveRecord::Base
   
   def feed
     Micropost.from_users_followed_by(self)    
+  end
+  
+  def jobfeed
+    Jobpost.where("user_id = ?", id)    
   end
   
   def following?(followed)

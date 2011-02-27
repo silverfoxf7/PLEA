@@ -112,6 +112,14 @@ describe UsersController do
       response.should have_selector('span.content', :content => mp2.content)
     end
     
+    it "should show the user's jobposts" do
+      jp1 = Factory(:jobpost, :user => @user, :title => "Document Review")
+      jp2 = Factory(:jobpost, :user => @user, :title => "Research")    
+      get :show, :id => @user
+      response.should have_selector("span.title", :content => jp1.title)
+      response.should have_selector("span.title", :content => jp2.title)
+    end
+    
     it "should paginate microposts" do
       35.times {Factory(:micropost, :user => @user, :content => "foo") }
       get :show, :id => @user

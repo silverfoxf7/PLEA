@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @title = @user.name
     @microposts = @user.microposts.paginate(:page => params[:page])
+    @jobposts = @user.jobposts.paginate(:page => 1)
   end
   
   def following 

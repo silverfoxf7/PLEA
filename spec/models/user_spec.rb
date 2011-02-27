@@ -182,6 +182,52 @@ describe User do
         end
       end
  
+ # ------------ job posts
+ 
+  describe "jobpost associations" do
+    before(:each) do
+      @user = User.create(@attr)
+      @jp1 = Factory(:jobpost, :user => @user, :created_at => 1.day.ago)
+      @jp2 = Factory(:jobpost, :user => @user, :created_at => 1.hour.ago)
+    end
+    
+    it "should have a jobpost attribute" do
+      @user.should respond_to(:jobposts)
+    end
+    
+    it "should have the jobposts in the right order" do
+      @user.jobposts.should == [@jp2, @jp1]
+    end
+    
+    it "should destroy associated jobposts" do
+      @user.destroy
+      [@jp1, @jp2].each do |jobposts|
+        Jobpost.find_by_id(jobposts.id).should be_nil
+      end
+    end
+    
+    describe "status feed" do
+
+      it "should have a feed" do
+        @user.should respond_to(:jobfeed)
+      end
+
+      it "should include the user's microposts" do
+        @user.jobfeed.include?(@jp1).should be_true
+        @user.jobfeed.include?(@jp2).should be_true
+      end
+
+      it "should not include a different user's microposts" do
+        jp3 = Factory(:jobpost,
+                      :user => Factory(:user, :email => Factory.next(:email)))
+        @user.jobfeed.include?(jp3).should be_false
+      end
+    end
+    
+  end
+ 
+ # ------------ job posts
+  
     describe "micropost associations" do
        before(:each) do
         @user = User.create(@attr)

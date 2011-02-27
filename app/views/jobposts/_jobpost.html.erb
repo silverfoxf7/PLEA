@@ -1,0 +1,15 @@
+<tr>
+  <td class="jobpost">
+    <span class="title">Title:  <%= jobpost.title %></span>
+    <span class="location">Location:  <%= jobpost.location %></span>
+    <span class="poster">Posted by:  <%= jobpost.poster %></span>
+    <span class="work_type">Type:  <%= jobpost.work_type %></span>
+    <span class="max_budget">Max Budget:  $<%= jobpost.max_budget %></span>
+    <span class="timeframe">Timeframe:  <%= jobpost.timeframe %></span>
+    <span class="skills">Skills:  <%= jobpost.skills %></span>
+    <span class="description">Description:  <%= jobpost.description %></span>
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(jobpost.created_at) %> ago.
+    </span>
+  </td>
+</tr>

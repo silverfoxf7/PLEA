@@ -10,6 +10,7 @@ SampleApp::Application.routes.draw do
   resources :sessions,   :only => [:new, :create, :destroy]
   # the additional argument limits which actions the resource can take
   resources :microposts, :only => [:create, :destroy]
+  resources :jobposts, :only => [:create, :destroy]
   resources :relationships, :only => [:create, :destroy]
   
   root :to => "pages#home"  

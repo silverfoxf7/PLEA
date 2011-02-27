@@ -1,0 +1,6 @@
+<% unless @jobfeed_items.empty? %>
+  <table class="jobposts" summary="User jobposts">
+    <%= render :partial => 'shared/jobfeed_item', :collection => @jobfeed_items %>
+  </table>
+  <%= will_paginate @jobfeed_items %>
+<% end %>

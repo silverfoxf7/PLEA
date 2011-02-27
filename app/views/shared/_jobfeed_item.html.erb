@@ -1,0 +1,29 @@
+<tr>
+
+  <td class="jobpost">
+    <span class="title">Title:  <%= jobfeed_item.title %></span>
+    <span class="location">Location:  <%= jobfeed_item.location %></span>
+    <span class="poster">Posted by:  <%= link_to jobfeed_item.user.name, 
+												 jobfeed_item.user %></span>
+    <span class="work_type">Type:  <%= jobfeed_item.work_type %></span>
+    <span class="max_budget">Max Budget:  $<%= jobfeed_item.max_budget %></span>
+    <span class="timeframe">Timeframe:  <%= jobfeed_item.timeframe %></span>
+    <span class="skills">Skills:  <%= jobfeed_item.skills %></span>
+    <span class="description">Description:  <%= jobfeed_item.description %></span>
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(jobfeed_item.created_at) %> ago.
+    </span>
+
+	<% if current_user?(jobfeed_item.user) %>
+
+	    <%= link_to "Delete Post", jobfeed_item, :method => :delete,
+	                                     :confirm => "You sure?",
+	                                     :title => jobfeed_item.title %>
+
+  </td>
+
+  <td class="gravatar">
+    <%= link_to gravatar_for(jobfeed_item.user), jobfeed_item.user %>
+   </td>
+  <% end %>
+</tr>

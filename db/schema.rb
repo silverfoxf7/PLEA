@@ -10,7 +10,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110224121406) do
+ActiveRecord::Schema.define(:version => 20110226200446) do
+
+  create_table "jobposts", :force => true do |t|
+    t.string   "title"
+    t.string   "location"
+    t.string   "poster"
+    t.text     "description"
+    t.integer  "work_type"
+    t.float    "max_budget"
+    t.datetime "timeframe"
+    t.integer  "skills"
+    t.datetime "expiretime"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "jobposts", ["description"], :name => "index_jobposts_on_description"
+  add_index "jobposts", ["expiretime"], :name => "index_jobposts_on_expiretime"
+  add_index "jobposts", ["location"], :name => "index_jobposts_on_location"
+  add_index "jobposts", ["max_budget"], :name => "index_jobposts_on_max_budget"
+  add_index "jobposts", ["poster"], :name => "index_jobposts_on_poster"
+  add_index "jobposts", ["skills"], :name => "index_jobposts_on_skills"
+  add_index "jobposts", ["timeframe"], :name => "index_jobposts_on_timeframe"
+  add_index "jobposts", ["title"], :name => "index_jobposts_on_title"
+  add_index "jobposts", ["user_id"], :name => "index_jobposts_on_user_id"
+  add_index "jobposts", ["work_type"], :name => "index_jobposts_on_work_type"
 
   create_table "microposts", :force => true do |t|
     t.string   "content"

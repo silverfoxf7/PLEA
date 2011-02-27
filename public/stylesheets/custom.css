@@ -1,9 +1,11 @@
+/* I'm using this color wheel scheme:  http://colorschemedesigner.com/#3B31WiinnrrtI  */
+
 .container {
 	width: 710px;	
 }
 
 body {
-	background: #7E7;
+	background: #6D90B8;
 }
 
 header { padding-top: 20px; 
@@ -125,7 +127,7 @@ td.sidebar {
 	width: 30%;
 	padding: 1em;
 	vertical-align: top;
-	background: #f9c;
+	background: #DA987A;
 }
 
 .profile img.gravatar {
@@ -246,3 +248,117 @@ form.new_micropost textarea {
   height: 4em;
   margin-bottom: 0;
 }
+
+/* CSS for jobposts */
+
+h1.jobpost {
+  margin-bottom: 0.3em;
+}
+
+table.jobposts {
+  margin-top: 1em;
+}
+
+table.jobposts tr {
+  height: 70px;
+}
+
+table.jobposts tr td.gravatar {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  width: 50px;
+}
+
+table.jobposts tr td.jobpost {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  padding-top: 10px;
+}
+
+table.jobposts tr td.jobpost span.timestamp {
+  display: block;
+  font-size: 85%;
+  color: #666;
+}
+
+table.jobposts tr td.jobpost span.title {
+  display: block;
+  font-size: 110%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+table.jobposts tr td.jobpost span.location {
+  display: block;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+table.jobposts tr td.jobpost span.poster {
+  display: block;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+table.jobposts tr td.jobpost span.work_type {
+  display: block;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+table.jobposts tr td.jobpost span.max_budget {
+  display: block;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+table.jobposts tr td.jobpost span.timeframe {
+  display: block;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+table.jobposts tr td.jobpost span.skills {
+  display: block;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+table.jobposts tr td.jobpost span.description {
+  display: block;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+div.user_info img {
+  padding-right: 0.1em;
+}
+
+div.user_info a {
+  text-decoration: none;
+}
+
+div.user_info span.user_name {
+  position: absolute;
+}
+
+div.user_info span.jobposts {
+  font-size: 80%;
+}
+
+form.new_jobpost {
+  margin-bottom: 2em;
+}
+
+form.new_jobpost textarea {
+  height: 4em;
+  margin-bottom: 0;
+}
+
