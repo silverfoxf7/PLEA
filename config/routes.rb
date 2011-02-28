@@ -18,9 +18,12 @@ SampleApp::Application.routes.draw do
   match '/contact',   :to => 'pages#contact'
   match '/about',     :to => 'pages#about'
   match '/help',      :to => 'pages#help'
+  match '/projects',  :to => 'pages#projects'
+  match '/post_project',  :to => 'pages#post_project'
   match '/signup',    :to => 'users#new'
   match '/signin',    :to => 'sessions#new'
   match '/signout',   :to => 'sessions#destroy'
+  # takes the website route /ZOT and matches to contrller_zot # ZOT-rsrc
 
   
   # The priority is based upon order of creation:

@@ -11,5 +11,12 @@
     <span class="timestamp">
       Posted <%= time_ago_in_words(jobpost.created_at) %> ago.
     </span>
+    
+    	<% if current_user?(@user) %>
+
+	    <%= link_to "Delete Post", jobpost, :method => :delete,
+	                                     :confirm => "You sure?",
+	                                     :title => jobpost.title %>
+        <% end %>
   </td>
 </tr>
