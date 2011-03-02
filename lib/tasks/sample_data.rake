@@ -31,11 +31,11 @@ def make_users
 end
 
 def make_jobposts
-  User.all(:limit => 3).each do |user|
-    5.times do
+  User.all(:limit => 30).each do |user|
+    2.times do
       title       = Faker::Lorem.sentence(1) # => "Big Document Review Project",
       location    = Faker::Lorem.sentence(1) #=> "New York, NY",
-      poster      = Faker::Name.name #=> "Number One LPO",
+      poster      = user.name #=> the name of the user with user_id,
       description = Faker::Lorem.paragraph(5) #=> "This is a document review project.",
       work_type   = (1 + rand(3))   # 1 refers to doc review
       max_budget  = (1 + rand(100))  # generate random number between $1-100

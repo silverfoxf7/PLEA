@@ -2,8 +2,9 @@
   <%= render 'shared/error_messages', :object => f.object %>
   <div class="field">
     <%= f.label :title %>:  <%= f.text_field :title %> <br />
-    <%= f.label :location %>:  <%= f.text_field :location %> <br />
-    <%= f.label :poster %>:  <%= f.text_field :poster %> <br />
+    <%= f.label :location %>:  <%= f.text_field :location %> <br />    
+    <%= f.label :poster %>:  <%= @jobpost.poster = current_user.name %>
+    			     <%= f.hidden_field :poster %> <br />
     <%= f.label :work_type %>:  <%= f.text_field :work_type %> <br />
     <%= f.label :max_budget %>:  <%= f.text_field :max_budget %> <br />
     <%= f.label :timeframe %>:  <%= f.text_field :timeframe %> <br />

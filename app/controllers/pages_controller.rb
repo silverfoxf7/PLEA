@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  helper_method :sort_column, :sort_direction
+
   def home
     @title = "Home"
     if signed_in?
@@ -13,17 +15,18 @@ class PagesController < ApplicationController
      if signed_in?
      	     @title = "Projects"
      	     @jobpost = Jobpost.new
-     	     @jobfeed_items = Jobpost.all.paginate(:page => params[:page])
-     	     # @jobfeed_items = current_user.jobfeed.paginate(:page => params[:page])
-     	     # if signed-in, then the commented line shows only signed-in-user's 
-     	     # projects at the Browse Projects page.  
-     	     # Now, with the runtime line, we show all projects.
+     	     @jobfeed_items = Jobpost.
+             order(sort_column + ' ' + sort_direction).
+             paginate(:page => params[:page])
      else
      	     @title = "Projects"
      	     @jobpost = Jobpost.new
-     	     @jobfeed_items = Jobpost.all.paginate(:page => params[:page])
-     	     # jobfeed is an array of jobpost items.  
-     	     # for now, display ALL jobposts if NOT signed in
+     	     @jobfeed_items = Jobpost.
+             order(sort_column + ' ' + sort_direction).
+             paginate(:page => params[:page])
+ # jobfeed is an array of jobpost items.  
+ # 2/28/11: display ALL jobposts if NOT signed in
+ # 3/1/11: display jobposts ordered by params
      end 
   end
 
@@ -47,5 +50,18 @@ class PagesController < ApplicationController
     @title = "Help"
   end
 
+private
+  def sort_column
+    Jobpost.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
+    # says: if Jobpost model has a column based on params:sort, then use
+        # that content to sort the column, otherwise use "title" as default
+    # might want to change the default parameter "title" to "expires in"
+    # once that feature is implemented
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "desc"
+    # made "desc" the default so we can see recently posted projects first.
+  end
 
 end

@@ -1,17 +1,41 @@
+
 <tr>
 
   <td class="jobpost">
-    <span class="title">Title:  <%= jobfeed_item.title %></span>
-    <span class="location">Location:  <%= jobfeed_item.location %></span>
-    <span class="poster">Posted by:  <%= link_to jobfeed_item.user.name, 
-												 jobfeed_item.user %></span>
-    <span class="work_type">Type:  <%= jobfeed_item.work_type %></span>
-    <span class="max_budget">Max Budget:  $<%= jobfeed_item.max_budget %></span>
-    <span class="timeframe">Timeframe:  <%= jobfeed_item.timeframe %></span>
-    <span class="skills">Skills:  <%= jobfeed_item.skills %></span>
-    <span class="description">Description:  <%= jobfeed_item.description %></span>
-    <span class="timestamp">
-      Posted <%= time_ago_in_words(jobfeed_item.created_at) %> ago.
+    <span class="title"><%= sortable "title", "Title:" %>
+                        <%= jobfeed_item.title %>
+
+    </span>
+
+    <span class="location"><%= sortable "location", "Location:" %>
+                           <%= jobfeed_item.location %>
+    </span>
+<!-- There's a bug in DESC location sort.  The last location is "test" but
+preceded by "Voluptatem".  Probably have to Title-Case the user input b/c
+the CAPS characters have different value in ASCII.  Posted by Example User-->
+    <span class="poster"><%= sortable "poster", "Posted by:" %>
+                         <%= link_to jobfeed_item.user.name,
+                                     jobfeed_item.user %>
+    </span>
+
+    <span class="work_type"><%= sortable "work_type", "Work Type:" %>
+                            <%= jobfeed_item.work_type %>
+    </span>
+    <span class="max_budget"><%= sortable "max_budget", "Max Bid:" %>
+                            $<%= jobfeed_item.max_budget %>
+    </span>
+    <span class="timeframe"><%= sortable "timeframe", "Project Length:" %>
+                            <%= jobfeed_item.timeframe %>
+    </span>
+    <span class="skills"><%= sortable "skills", "Skills Sought:" %>
+                         <%= jobfeed_item.skills %>
+    </span>
+    <span class="description">
+       Description:  <%= jobfeed_item.description %>
+    </span>
+
+    <span class="timestamp"><%= sortable "created_at", "Posted" %>
+          <%= time_ago_in_words(jobfeed_item.created_at) %> ago.
     </span>
 
 	<% if current_user?(jobfeed_item.user) %>

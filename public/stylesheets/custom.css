@@ -83,7 +83,7 @@ a.signup_button {
   text-align: center;
   width: 190px;
   color: #fff;
-  background: #006400;
+  background: #DA987A;
   font-size: 150%;
   font-weight: bold;
   padding: 10px;
@@ -361,4 +361,3 @@ form.new_jobpost textarea {
   height: 4em;
   margin-bottom: 0;
 }
-
