@@ -20,8 +20,10 @@
 
 class Jobpost < ActiveRecord::Base
   
-  default_scope :order => 'jobposts.created_at DESC'
-  
+#  default_scope :order => 'jobposts.created_at DESC'
+# I removed the default_scope command so that I could implement the 
+# Jobpost.order(params[:sort]) command within the _jobfeed_items partial.
+
   attr_accessible :title, :location, :poster, :description, :work_type, 
                   :max_budget, :timeframe, :skills 
   
