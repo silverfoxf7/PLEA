@@ -6,10 +6,12 @@ class JobpostsController < ApplicationController
     @jobpost = current_user.jobposts.build(params[:jobpost])
       if @jobpost.save
         flash[:success] = "Project Created!"
-        redirect_to root_path
+        redirect_to projects_path
       else
         @jobfeed_items = []
-        render 'pages/home'
+        render 'pages/post_project'
+        # perhaps using render (rather than redirect_to) because this way
+        # we can see the errors that are being shown in FLASH msg.
       end
   end
 
