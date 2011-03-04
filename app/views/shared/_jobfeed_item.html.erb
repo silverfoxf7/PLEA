@@ -1,6 +1,6 @@
 
 <tr>
-
+<div id="jq_jobfeed">
   <td class="jobpost">
     <span class="title"><%= sortable "title", "Title:" %>
                         <%= jobfeed_item.title %>
@@ -37,7 +37,7 @@ the CAPS characters have different value in ASCII.  Posted by Example User-->
     <span class="timestamp"><%= sortable "created_at", "Posted" %>
           <%= time_ago_in_words(jobfeed_item.created_at) %> ago.
     </span>
-
+</div>
 	<% if current_user?(jobfeed_item.user) %>
 
 	    <%= link_to "Delete Post", jobfeed_item, :method => :delete,

@@ -1,5 +1,7 @@
 require File.expand_path('../boot', __FILE__)
-
+#require 'openssl'  
+#OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+	# commented lines abov are used to instal jQuery on Windows 
 require 'rails/all'
 
 # If you have a Gemfile, require the gems listed there, including any gems

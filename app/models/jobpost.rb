@@ -50,8 +50,20 @@ class Jobpost < ActiveRecord::Base
          #  timeframe   :datetime
   
   validates :user_id, :presence => true
-  
 
+  # perform search functionality
+def self.search(search)
+  if search
+    where('title LIKE ?', "%#{search}%")
+    # you may want to use a full-text engine here instead of where(...)
+    # try thinking sphinx. 
+  else
+# the find(:all) may phase out with later versions of Rails. instead we use
+# "scoped" so we don't actually hit the database for info.  
+    scoped
+     #
+  end
+end
 
   
   
