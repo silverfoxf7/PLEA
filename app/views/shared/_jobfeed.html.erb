@@ -1,18 +1,71 @@
-<% unless @jobfeed_items.empty? %>
+<% if @jobfeed_items.any? %>
 
-<%= form_tag projects_path, :method => 'get' do %>
-<%= hidden_field_tag :direction, params[:direction] %>
-<%= hidden_field_tag :sort, params[:sort] %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
-<% end %>
+  <% form_for :search, @search, :html => {:method => :get} do |f| %>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+      
+        <%= f.label :title_contains, "Title" %>
+        <%= f.text_field :title_contains %> <br />
+      
+        <%= f.label :location_contains, "Location" %>
+        <%= f.text_field :location_contains %><br />
+
+        <%= f.label :poster_contains, "Posted by" %>
+        <%= f.text_field :poster_contains %><br />
+
+        <%= f.label :max_budget_gte, "Budget From" %>
+        <%= f.text_field :max_budget_gte, :size => 4 %>
+        <%= f.label :max_budget_lte, "to" %>
+        <%= f.text_field :max_budget_lte, :size => 4 %><br />
+
+        <%= f.label :description_contains, "Description" %>
+        <%= f.text_field :description_contains %><br />
+
+        <%= f.label :title_or_location_or_poster_or_description_contains, "Any Keyword" %>
+        <%= f.text_field :title_or_location_or_poster_or_description_contains %><br />
+
+      <p class="button"><%= f.submit "Search" %></p>
+  <% end %>
+
 
   <table class="jobposts" summary="User jobposts">
     <%= render :partial => 'shared/jobfeed_item', :collection => @jobfeed_items %>
   </table>
   
   <%= will_paginate @jobfeed_items %>
+
+<% else %>
+  
+  <% form_for :search, @search, :html => {:method => :get} do |f| %>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+
+        <%= f.label :title_contains, "Title" %>
+        <%= f.text_field :title_contains %> <br />
+
+        <%= f.label :location_contains, "Location" %>
+        <%= f.text_field :location_contains %><br />
+
+        <%= f.label :poster_contains, "Posted by" %>
+        <%= f.text_field :poster_contains %><br />
+
+        <%= f.label :max_budget_gte, "Budget From" %>
+        <%= f.text_field :max_budget_gte, :size => 4 %>
+        <%= f.label :max_budget_lte, "to" %>
+        <%= f.text_field :max_budget_lte, :size => 4 %><br />
+
+        <%= f.label :description_contains, "Description" %>
+        <%= f.text_field :description_contains %><br />
+
+        <%= f.label :title_or_location_or_poster_or_description_contains, "Any Keyword" %>
+        <%= f.text_field :title_or_location_or_poster_or_description_contains %><br />
+
+      <p class="button"><%= f.submit "Search" %></p>
+  <% end %>
+
+        <p>
+          We're sorry but there are no results.
+        </p>
+  
 
 <% end %>

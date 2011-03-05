@@ -51,20 +51,42 @@ class Jobpost < ActiveRecord::Base
   
   validates :user_id, :presence => true
 
-  # perform search functionality
-def self.search(search)
-  if search
-    where('title LIKE ?', "%#{search}%")
-    # you may want to use a full-text engine here instead of where(...)
-    # try thinking sphinx. 
-  else
-# the find(:all) may phase out with later versions of Rails. instead we use
-# "scoped" so we don't actually hit the database for info.  
-    scoped
-     #
-  end
-end
+  # perform search functionality without meta_search
+#def self.search(search)
+#  if search
+#    # you may want to use a full-text engine here instead of where(...)
+#    # try thinking sphinx.  for a "keyword" search ala Trulia
+## ----------------------------------------------------
+#
+##   where('title LIKE ?',  "%#{search}%")
+#      # this older method uses the Rails default search
+#    where({:title.matches => "%#{search}%"} |
+#          {:location.matches => "%#{search}%"})
+#    # this method uses the meta_where method.  They are identical.
+#  else
+## the find(:all) may phase out with later versions of Rails. instead we use
+## "scoped" so we don't actually hit the database for info.
+#    scoped
+#     #
+#  end
+#end
 
-  
+  # performs search using meta_where
+  # currently un-used
+#def self.keyword_search(search)
+#  if search
+#    where({:title.matches => "%#{search}%"} |
+#          {:location.matches => "%#{search}%"} |
+#          {:poster.matches => "%#{search}%"} |
+#          {:work_type.matches => "%#{search}%"} |
+#          {:max_budget.matches => "%#{search}%"} |
+#          {:timeframe.matches => "%#{search}%"} |
+#          {:poster.matches => "%#{search}%"} |
+#          {:skills.matches => "%#{search}%"} |
+#          {:description.matches => "%#{search}%"})
+#  else
+#    scoped
+#  end
+#end
   
 end

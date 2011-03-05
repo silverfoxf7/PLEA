@@ -16,20 +16,23 @@ class PagesController < ApplicationController
            # abv:  performing search through Jobpost model
      	     @title = "Projects"
      	     @jobpost = Jobpost.new
-     	     @jobfeed_items = Jobpost.
-             search(params[:search]).
+           @search = Jobpost.search(params[:search])
+           # stores all of the search results
+     	     @jobfeed_items = @search.
              order(sort_column + ' ' + sort_direction).
              paginate(:per_page => 5, :page => params[:page])
      else
      	     @title = "Projects"
      	     @jobpost = Jobpost.new
-     	     @jobfeed_items = Jobpost.
-             search(params[:search]).
+           @search = Jobpost.search(params[:search])
+           # stores all of the search results
+     	     @jobfeed_items = @search.
              order(sort_column + ' ' + sort_direction).
-             paginate(:page => params[:page])
- # jobfeed is an array of jobpost items.  
- # 2/28/11: display ALL jobposts if NOT signed in
- # 3/1/11: display jobposts ordered by params
+             paginate(:per_page => 5, :page => params[:page])
+
+# jobfeed is an array of jobpost items.  
+# 3/1/11: display jobposts ordered by params
+
      end 
   end
 
