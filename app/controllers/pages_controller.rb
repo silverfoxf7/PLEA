@@ -27,7 +27,6 @@ class PagesController < ApplicationController
            @search = Jobpost.search(params[:search])
            # stores all of the search results
      	     @jobfeed_items = @search.
-             order(sort_column + ' ' + sort_direction).
              paginate(:per_page => 5, :page => params[:page])
 
 # jobfeed is an array of jobpost items.  
