@@ -1,4 +1,3 @@
-
 <tr>
   <td class="jobpost">
     <span class="title"><strong>Title: </strong>
@@ -15,11 +14,24 @@
     <span class="work_type"><strong>Work Type: </strong>
                 <%= jobfeed_item.work_type %></span>
 
-    <span class="max_budget"><strong>Max Bid: $</strong>
+    <span class="max_budget"><strong>Max Bid: </strong>$
                 <%= jobfeed_item.max_budget %></span>
 
-    <span class="timeframe"><strong>Project Duration: </strong>
-                <%= jobfeed_item.timeframe %>
+    <span class="overtime"><strong>Pays Overtime: </strong>
+                <%= jobfeed_item.overtime ? "Yes" : "No" %>
+    </span>
+
+    <span class="start_date"><strong>Start Date:  </strong>
+                <%= jobfeed_item.start_date ? 
+                jobfeed_item.start_date.strftime("%a, %b. %d, %Y") : "" %>
+    </span>
+
+    <span class="duration"><strong>Project Duration: </strong>
+                <%= jobfeed_item.duration %> weeks
+    </span>
+
+    <span class="work_intensity"><strong>Intensity: </strong>
+                <%= jobfeed_item.work_intensity %> hours per week
     </span>
 
     <span class="skills"><strong>Skills Sought: </strong>

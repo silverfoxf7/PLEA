@@ -5,11 +5,14 @@ class CreateJobposts < ActiveRecord::Migration
       t.string :location
       t.string :poster
       t.text :description
-      t.integer :work_type
+      t.string :work_type
       t.float :max_budget
-      t.datetime :timeframe
-      t.integer :skills
+      t.integer :duration
+      t.string :skills
       t.datetime :expiretime
+      t.datetime :start_date
+      t.boolean :overtime
+      t.integer :work_intensity
       t.integer :user_id
 
       t.timestamps
@@ -23,9 +26,13 @@ class CreateJobposts < ActiveRecord::Migration
     add_index :jobposts, :description
     add_index :jobposts, :work_type
     add_index :jobposts, :max_budget
-    add_index :jobposts, :timeframe
+    add_index :jobposts, :duration
     add_index :jobposts, :skills
     add_index :jobposts, :expiretime
+    add_index :jobposts, :start_date
+    add_index :jobposts, :overtime
+    add_index :jobposts, :work_intensity
+
     add_index :jobposts, :user_id
     
   end

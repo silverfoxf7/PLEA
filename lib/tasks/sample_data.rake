@@ -37,10 +37,24 @@ def make_jobposts
       location    = Faker::Lorem.sentence(1) #=> "New York, NY",
       poster      = user.name #=> the name of the user with user_id,
       description = Faker::Lorem.paragraph(5) #=> "This is a document review project.",
-      work_type   = (1 + rand(3))   # 1 refers to doc review
+      var_work_type   = (1 + rand(3))   # 1 refers to doc review
+      work_type = case var_work_type
+        when 1 then "Document Review"
+        when 2 then "Legal Research"
+        else "Drafting Patent"
+      end
       max_budget  = (1 + rand(100))  # generate random number between $1-100
-      timeframe   = Time.now
-      skills      = (1 + rand(3))    
+      duration   = (1 + rand(100))  # generates 1-100 day projects
+      var_skills      = (1 + rand(4))
+      skills = case var_skills
+        when 1 then "Spanish"
+        when 2 then "Japanese"
+        when 3 then "Patent"
+        else ""
+      end
+      start_date          = rand_time(5.days.from_now, 5.weeks.from_now)
+      overtime            = [true,false][rand(2)]
+      work_intensity      = (1 + rand(100))
       user.jobposts.create!(
                   :title       => title,
                   :location    => location,
@@ -48,8 +62,11 @@ def make_jobposts
                   :description => description,
                   :work_type   => work_type,
                   :max_budget  => max_budget,
-                  :timeframe   => timeframe,
-                  :skills      => skills)
+                  :duration   => duration,
+                  :skills      => skills,
+                  :start_date  => start_date,
+                  :overtime    => overtime,
+                  :work_intensity => work_intensity)
     end
   end
 end
@@ -70,4 +87,20 @@ def make_relationships
   followers = users[3..40]
   following.each { |followed| user.follow!(followed) }
   followers.each { |follower| follower.follow!(user) }
+end
+
+def rand_int(from, to)
+  rand_in_range(from, to).to_i
+end
+
+def rand_price(from, to)
+  rand_in_range(from, to).round(2)
+end
+
+def rand_time(from, to)
+  Time.at(rand_in_range(from.to_f, to.to_f))
+end
+
+def rand_in_range(from, to)
+  rand * (to - from) + from
 end

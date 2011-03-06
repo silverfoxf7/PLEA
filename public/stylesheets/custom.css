@@ -316,7 +316,28 @@ table.jobposts tr td.jobpost span.max_budget {
   margin-bottom: 0.3em;
 }
 
-table.jobposts tr td.jobpost span.timeframe {
+table.jobposts tr td.jobpost span.work_intensity {
+  display: block;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+table.jobposts tr td.jobpost span.overtime {
+  display: block;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+table.jobposts tr td.jobpost span.start_date {
+  display: block;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+table.jobposts tr td.jobpost span.duration {
   display: block;
   font-size: 100%;
   color: #000;

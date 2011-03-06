@@ -16,6 +16,9 @@
 #  user_id     :integer
 #  created_at  :datetime
 #  updated_at  :datetime
+#  start_date  :datetime
+#  overtime    :boolean
+#  work_intensity :integer
 #
 #  object.strftime("Printed on %m/%d/%Y")   #=> "Printed on 11/19/2007"
 #  add an expected start_date
@@ -29,24 +32,34 @@ class Jobpost < ActiveRecord::Base
 # Jobpost.order(params[:sort]) command within the _jobfeed_items partial.
 
   attr_accessible :title, :location, :poster, :description, :work_type, 
-                  :max_budget, :timeframe, :skills 
+                  :max_budget, :duration, :skills, :start_date, :overtime,
+                  :work_intensity
   
   belongs_to :user
-  
+
+  validates :start_date, :presence => true
   validates :location, :presence => true, :length => { :maximum => 100 }
   validates :poster, :presence => true, :length => { :maximum => 100 }
   validates :description, :presence => true, :length => { :maximum => 1000 }
   validates :title, :presence => true, :length => { :maximum => 100 }
   
-  validates_numericality_of :work_type, :only_integer => true, 
-                                        :message => "Can only be whole number."
-  validates_inclusion_of :work_type, :in => 1..3, 
-                                     :message => "Can only be a number between 1 and 3."
+#  validates_numericality_of :work_type, :only_integer => true,
+#                                        :message => "Can only be whole number."
+#  validates_inclusion_of :work_type, :in => 1..3,
+#                                     :message => "Can only be a number between 1 and 3."
+
+  validates :work_type, :presence => true,  :length => { :maximum => 100 }
+
+#  validates :skills, :presence => true,     :length => { :maximum => 100 }
   
-   validates_numericality_of :skills, :only_integer => true, 
-                                         :message => "Can only be whole number."
-   validates_inclusion_of :skills, :in => 1..3, 
-                                      :message => "Can only be a number between 1 and 3."  
+#  validates_numericality_of :skills, :only_integer => true,
+#                                         :message => "Can only be whole number."
+
+  validates_numericality_of :work_intensity, :only_integer => true,
+          :message => "must be the number of work hours per week."
+
+#  validates_inclusion_of :skills, :in => 1..3,
+#                                      :message => "Can only be a number between 1 and 3."
   # this RSPEC isn't testing properly.  Why?  Only works if I test validates 1-by-1.
   
    # need to validate 
