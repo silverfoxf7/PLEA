@@ -1,7 +1,7 @@
 /* I'm using this color wheel scheme:  http://colorschemedesigner.com/#3B31WiinnrrtI  */
 
 .container {
-	width: 710px;	
+	width: 960px;
 }
 
 body {
@@ -360,4 +360,37 @@ form.new_jobpost {
 form.new_jobpost textarea {
   height: 4em;
   margin-bottom: 0;
+}
+
+/* Left Content Search Box */
+
+td.searchbox {
+	width: 30%;
+	padding: 1em;
+	vertical-align: top;
+	background: #DA987A;
+}
+
+/*td.left_search_box {
+  text-align: left;
+  margin-top: 10px;
+  width: 270px;
+  margin-left: auto;
+  margin-right: auto;
+}*/
+
+/* Sign up button */
+
+a.postproject_button {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1em;
+  display: block;
+  text-align: center;
+  width: 190px;
+  color: #fff;
+  background: #DA987A;
+  font-size: 110%;
+  font-weight: bold;
+  padding: 10px;
 }

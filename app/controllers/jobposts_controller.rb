@@ -2,7 +2,7 @@ class JobpostsController < ApplicationController
   before_filter :authenticate, :only => [:create, :destroy]
   before_filter :authorized_user, :only => :destroy
 
-  def create
+  def create  #literally creates the post, whereas "new" is for a new post
     @jobpost = current_user.jobposts.build(params[:jobpost])
       if @jobpost.save
         flash[:success] = "Project Created!"

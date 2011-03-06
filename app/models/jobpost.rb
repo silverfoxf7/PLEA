@@ -12,11 +12,15 @@
 #  max_budget  :float
 #  timeframe   :datetime
 #  skills      :integer
-#  expiretime  :datetime
+#  expiretime  :datetime   
 #  user_id     :integer
 #  created_at  :datetime
 #  updated_at  :datetime
 #
+#  object.strftime("Printed on %m/%d/%Y")   #=> "Printed on 11/19/2007"
+#  add an expected start_date
+#  need to add boolean for "overtime" boolean
+#  need to add work_intensity as expected hours/wk
 
 class Jobpost < ActiveRecord::Base
   
