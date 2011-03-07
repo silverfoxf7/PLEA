@@ -49,6 +49,7 @@ class Jobpost < ActiveRecord::Base
 #                                     :message => "Can only be a number between 1 and 3."
 
   validates :work_type, :presence => true,  :length => { :maximum => 100 }
+  
 
 #  validates :skills, :presence => true,     :length => { :maximum => 100 }
   

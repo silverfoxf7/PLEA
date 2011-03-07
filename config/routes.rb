@@ -10,7 +10,8 @@ SampleApp::Application.routes.draw do
   resources :sessions,   :only => [:new, :create, :destroy]
   # the additional argument limits which actions the resource can take
   resources :microposts, :only => [:create, :destroy]
-  resources :jobposts, :only => [:create, :destroy]
+  # resources :jobposts, :only => [:create, :destroy]
+  resources :jobposts
   resources :relationships, :only => [:create, :destroy]
   
   root :to => "pages#home"  
@@ -18,8 +19,10 @@ SampleApp::Application.routes.draw do
   match '/contact',   :to => 'pages#contact'
   match '/about',     :to => 'pages#about'
   match '/help',      :to => 'pages#help'
-  match '/projects',  :to => 'pages#projects'
-  match '/post_project',  :to => 'pages#post_project'
+ #match '/projects',  :to => 'pages#projects'
+  match '/projects',  :to => 'jobposts#index'
+ #match '/post_project',  :to => 'pages#post_project'
+  match '/post_project',  :to => 'jobposts#new'
   match '/signup',    :to => 'users#new'
   match '/signin',    :to => 'sessions#new'
   match '/signout',   :to => 'sessions#destroy'

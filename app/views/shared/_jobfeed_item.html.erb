@@ -1,7 +1,10 @@
 <tr>
   <td class="jobpost">
+  
     <span class="title"><strong>Title: </strong>
-                        <%= jobfeed_item.title %></span>
+      <strong><%= link_to jobfeed_item.title,
+                                    jobpost_path(jobfeed_item.id) %></strong>
+    </span>
 
     <span class="location"><strong>Location: </strong>
                             <%= jobfeed_item.location %></span>
@@ -53,6 +56,7 @@
 
   </td>
 
+  
   <td class="gravatar">
     <%= link_to gravatar_for(jobfeed_item.user), jobfeed_item.user %>
    </td>
