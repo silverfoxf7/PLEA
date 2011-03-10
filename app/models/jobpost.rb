@@ -36,6 +36,7 @@ class Jobpost < ActiveRecord::Base
                   :work_intensity
   
   belongs_to :user
+  has_many :bids,          :dependent => :destroy
 
   validates :start_date, :presence => true
   validates :location, :presence => true, :length => { :maximum => 100 }

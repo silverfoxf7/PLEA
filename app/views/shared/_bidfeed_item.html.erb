@@ -1,0 +1,16 @@
+<tr>
+  <td class="jobpost">
+
+      <span class="bid amount"><strong>Amount $</strong>
+        <strong><%= bidfeed_item.amount %></strong><br/>
+      </span>
+
+      <span class="bid amount"><strong>Submitted By: </strong>
+        <strong><%= User.find(bidfeed_item.user_id).name %></strong><br/>
+      </span>
+
+      <span class="bid amount"><strong>Jobpost ID: </strong>
+        <strong><%= bidfeed_item.jobpost_id %></strong><br/>
+      </span>
+  </td>
+</tr>

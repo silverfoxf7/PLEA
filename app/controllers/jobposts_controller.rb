@@ -25,12 +25,14 @@ class JobpostsController < ApplicationController
 
   def show
     # page to show individual projects by ID
-     	     @title = "Projects"
+     	     @bid = Bid.new if signed_in?
+           @title = "Projects"
      	     #@jobpost = Jobpost.new
            @job = Jobpost.find(params[:id]) 
            # id = show;  not right.  need it to pass id for a particular project
            # stores all of the search results
      	     @jobfeed_items = @job
+           @bidfeed_items = @job.bids.all.paginate(:per_page => 30, :page => params[:page])
   end
 
   def new

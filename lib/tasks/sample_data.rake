@@ -8,6 +8,7 @@ namespace :db do
     Rake::Task['db:reset'].invoke
     make_users
     make_jobposts
+    make_bids
     make_microposts
     make_relationships
   end
@@ -67,6 +68,19 @@ def make_jobposts
                   :start_date  => start_date,
                   :overtime    => overtime,
                   :work_intensity => work_intensity)
+    end
+  end
+end
+
+def make_bids
+  User.all(:limit => 30).each do |user|
+    2.times do
+      amount       = (1 + rand(100))   # sets a bid amount
+      jobpost_id   = (1 + rand(59))  # should set IDs between 1 to 59
+
+      user.bids.create!(
+                  :amount       => amount,
+                  :jobpost_id   => jobpost_id)
     end
   end
 end

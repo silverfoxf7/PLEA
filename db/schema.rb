@@ -10,7 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110226200446) do
+ActiveRecord::Schema.define(:version => 20110308111931) do
+
+  create_table "bids", :force => true do |t|
+    t.integer  "amount"
+    t.integer  "user_id"
+    t.integer  "jobpost_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bids", ["jobpost_id"], :name => "index_bids_on_jobpost_id"
+  add_index "bids", ["user_id"], :name => "index_bids_on_user_id"
 
   create_table "jobposts", :force => true do |t|
     t.string   "title"

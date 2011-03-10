@@ -11,11 +11,23 @@ SampleApp::Application.routes.draw do
   # the additional argument limits which actions the resource can take
   resources :microposts, :only => [:create, :destroy]
   # resources :jobposts, :only => [:create, :destroy]
-  resources :jobposts
+
+#################################
+          resources :jobposts do
+              resources :bids #, :only => [:create, :destroy]
+          end
+
+          resources :bids do #, :only => [:create, :destroy] do
+              resources :microposts, :only => [:create, :destroy]
+          end
+#################################
+
   resources :relationships, :only => [:create, :destroy]
   
   root :to => "pages#home"  
-  
+
+  match '/allbids',  :to => 'bids#index'
+
   match '/contact',   :to => 'pages#contact'
   match '/about',     :to => 'pages#about'
   match '/help',      :to => 'pages#help'

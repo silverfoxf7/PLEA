@@ -11,6 +11,7 @@
 			<% if @user.jobposts.any? %>
 				<table class="jobposts" summary="User jobposts"> 
 					<%= render @jobposts %>
+
 				</table>
 				<%= will_paginate @jobposts %>
 			<% end %>
