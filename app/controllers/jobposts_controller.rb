@@ -1,7 +1,7 @@
 class JobpostsController < ApplicationController
   before_filter :authenticate, :only => [:create, :new, :destroy, :edit, :update]
   before_filter :authorized_user, :only => :destroy
-
+  
   def index
     # page to show all projects (aka BROWSE)
     if signed_in?
@@ -78,6 +78,7 @@ private
     @jobpost = Jobpost.find(params[:id])
     redirect_to root_path unless current_user?(@jobpost.user)
   end
+
 
   def sort_column
     Jobpost.column_names.include?(params[:sort]) ? params[:sort] : "created_at"

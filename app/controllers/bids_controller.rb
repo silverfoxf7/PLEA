@@ -1,54 +1,12 @@
 class BidsController < ApplicationController
   before_filter :authenticate, :only => [:create, :new, :destroy, :edit, :update]
   before_filter :authorized_user, :only => :destroy
+  before_filter :bid_amount_check, :only => :create
+  before_filter :one_bid_per_user, :only => :create
 
-#  probably dont need an Index or Show action.  Need only create/delete bids
-
-#  def index
-#    # page to show all bids (aka BROWSE)
-#    if signed_in?
-#    	     @title = "All Bids"
-#           @jobpost = Jobpost.find(params[:jobpost_id])
-#           @bidfeed_items = @jobpost.bids.all.paginate(:per_page => 5, :page => params[:page])
-#    else
-#    	     @title = "All Bids"
-## below-- shows all bids for Jobpost with ID from webpage
-## can probably get rid of these below ... bloated code
-#           @jobpost = Jobpost.find(params[:jobpost_id])
-#           @bidfeed_items = @jobpost.bids.all.paginate(:per_page => 5, :page => params[:page])
-#
-## below-- shows all bids for User with ID 1
-##           @bidindex = Bid.where("user_id = ?", 1)
-##           @bidfeed_items = @bidindex.all.paginate(:per_page => 5, :page => params[:page])
-#
-## below-- shows all bids for all projects
-##           @bidindex = Bid.find(:all)
-##           @bidfeed_items = @bidindex.paginate(:per_page => 30, :page => params[:page])
-#
-#
-#    end
-#  end
-#
-#  def show
-#    	     @title = "Bids"
-#
-## can probably get rid of these below ... bloated code
-#           @jobpost = Jobpost.find(params[:jobpost_id])
-#           @bidfeed_items = @jobpost.bids.all.paginate(:per_page => 5, :page => params[:page])
-#  end
-#
-#  def new  # a pre-resource for creating a new Bid
-#    # page to make a new project page (post_project)
-#    @title = "Post a New Project"
-#    if signed_in?
-#          @bid = Bid.new if signed_in?
-##          @bidfeed_items = current_user.jobfeed.paginate(:page => params[:page])
-#          # can probably comment this out @bidfeed_items
-#    end
-#  end
 
   def create  #literally creates the bid, whereas "new" is for a new post page
-    @bid = current_user.bids.build(params[:bid])
+#    @bid = current_user.bids.build(params[:bid])
       if @bid.save
         flash[:success] = "Bid Submitted!"
         redirect_to :back
@@ -57,14 +15,6 @@ class BidsController < ApplicationController
         @bidfeed_items = []
         redirect_to :back, :alert => "Please enter an appropriate bid."
       end
-  end
-
-  def edit
-    # page to edit project with params ID
-  end
-
-  def update
-    # updates project with params ID
   end
 
   def destroy
@@ -77,6 +27,40 @@ private
   def authorized_user
     @bid = Bid.find(params[:id])
     redirect_to root_path unless current_user?(@bid.user)
+  end
+  
+  def bid_amount_check  #checks whether bid is too high and whether bid more than 1?
+    @bidcheck = current_user.bids.new(params[:bid])
+#    instantiates new bid, but does not save to DB
+    @job = Jobpost.find(@bidcheck.jobpost_id)
+#    finds current jobpost we're talking about
+    if @bidcheck.amount <= @job.max_budget
+      @bid = current_user.bids.build(params[:bid])
+    else
+      @bid = current_user.bids.new(params[:bid]) #no save.
+      redirect_to :back, :alert => "You exceeded the max budget. Please enter a new bid."
+    end
+  end
+
+  def one_bid_per_user  #checks whether bid is too high and whether bid more than 1?
+    @bid_count = 0
+    @job = Jobpost.find(@bidcheck.jobpost_id)
+    @allbids = @job.bids.all
+    # checks each bid_id, if match, then increase counter
+    @allbids.each do |i|
+      if i.user_id == current_user.id
+        @bid_count = @bid_count + 1
+      end
+    end
+# now check counter to see if this user has previous posts. 
+    if @bid_count < 1  # no previous posts, then build
+      @bid = current_user.bids.build(params[:bid])
+    else
+      @bid = current_user.bids.new(params[:bid]) #no save.
+      redirect_to :back, :alert => "You have already bid on this project."
+      #Q: is this the best place to do this? Shouldn't even allow person to bid.
+      # consider altering the HTML based on bid_count so that SUBMIT not shown.
+    end
   end
 
   def sort_column
