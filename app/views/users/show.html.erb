@@ -7,7 +7,12 @@
 			</h1>
 			<%= render 'follow_form' if signed_in? %>
 
-
+                        Profile Goes Here:  <br/>
+                        * Bio <br/>
+                        * Resume <br/>
+                        * Rating <br/>
+                        * Location <br/>
+                        * Etc. <br/>
 			<% if @user.jobposts.any? %>
 				<table class="jobposts" summary="User jobposts"> 
 					<%= render @jobposts %>
@@ -29,8 +34,8 @@
 		<td class="sidebar round">
 			<strong>Name</strong> <%= @user.name %> <br />
 			<strong>URL</strong>  <%= link_to user_path(@user), @user %> <br />
-			<strong>Number of Projects</strong> <%= @user.jobposts.count %>
-			<strong>Microposts</strong> <%= @user.microposts.count %>
+			<strong>Number of Projects</strong> <%= @user.jobposts.count %><br/>
+			<strong>Number of Bids</strong> <%= @user.bids.count %><br/>
 			<%= render 'shared/stats' %>
 		</td>
 		

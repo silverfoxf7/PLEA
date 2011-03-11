@@ -6,11 +6,9 @@
       </span>
 
       <span class="bid amount"><strong>Submitted By: </strong>
-        <strong><%= User.find(bidfeed_item.user_id).name %></strong><br/>
+        <strong><%= link_to User.find(bidfeed_item.user_id).name,
+                            User.find(bidfeed_item.user_id) %></strong><br/>
       </span>
 
-      <span class="bid amount"><strong>Jobpost ID: </strong>
-        <strong><%= bidfeed_item.jobpost_id %></strong><br/>
-      </span>
   </td>
 </tr>

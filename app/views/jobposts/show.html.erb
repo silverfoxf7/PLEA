@@ -1,7 +1,4 @@
-<center><h1>Show Projects</h1></center>
-
-<h3>Title: <%= @job.title %></h3>
-
+<h3>Project: <%= @job.title %></h3>
     
 <table class="jobposts" summary="User jobposts">
   <tr>
@@ -58,19 +55,19 @@
   </table>
 
 <% if signed_in? %>
-  <table class="front" summary="For signed-in users">
+<table class="front" summary="For signed-in users">
     <tr>
       <td class="main">
-        <h3 class="micropost">Place a bid for this project:</h3>
+        <h3 class="micropost">Place a bid on this project:</h3>
         <%= render 'shared/bidpost_form' %>
       </td>
     </tr>
   </table>
 <% else %>
-  <p>
+<center><h3>
     Please <%= link_to "sign-up", signup_path %> or
            <%= link_to "sign-in", signin_path %> to bid on this project.
-  </p>
+  </h3></center> <br/>
 <% end %>
 
 <h3>Current Bids</h3>
