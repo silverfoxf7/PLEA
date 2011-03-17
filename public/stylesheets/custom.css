@@ -140,6 +140,7 @@ div.field, div.actions {
 	
 }
 
+
 /* Errors Styling */
 
 .field_with_errors {
@@ -385,6 +386,8 @@ form.new_jobpost textarea {
 
 /* Left Content Search Box */
 
+
+
 td.searchbox {
 	width: 30%;
 	padding: 1em;
@@ -415,4 +418,217 @@ a.postproject_button {
   font-size: 110%;
   font-weight: bold;
   padding: 10px;
+}
+
+td.user_searchbox {
+    width: 30%;
+    padding: 1em;
+    vertical-align: top;
+    background: #DA987A;
+}
+
+td.user_profile span.real_name {
+  display: block;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+td.user_profile span.yesstatus {
+  display: block;
+  font-size: 100%;
+  color: #66CC00;
+/* Green for Available */
+  margin-bottom: 0.3em;
+}
+
+td.user_profile span.nostatus {
+  display: block;
+  font-size: 100%;
+  color: #FF0000;
+/* RED for Unavailable */
+  margin-bottom: 0.3em;
+}
+
+td.user_profile span.skills {
+  display: block;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+td.user_profile span.location {
+  display: block;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+td.user_profile span.rating {
+  display: block;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+td.user_profile span.jobs_completed {
+  display: block;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+td.user_profile span.tagline {
+  display: block;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+td.user_profile span.topskills {
+  display: block;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+td.user_profile span.resume {
+  display: block;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.3em;
+}
+
+td.bids {
+  width: 25%;
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  padding-top: 10px;
+}
+
+td.main_bid {
+	width: 70%;
+	padding: 1em;
+        vertical-align: top;
+}
+
+td.abbrev_user {
+  display: inline-block;
+  width: 22%;
+  font-size: 100%;
+  color: #000;
+  margin-bottom: 0.0em;
+  border-top: 1px solid #ccc;
+/*  vertical-align:text-bottom;*/
+}
+
+td.abbrev_user_tagline {
+  display: block;
+  width: 100%;
+  color: #000;
+/*  margin-bottom: 0.5em;*/
+/*  border-bottom: thin solid black;*/
+  vertical-align:text-bottom;
+}
+/*  Need to make multiple SPANS for the abbrev_user block */
+div.bidtable span.yesstatus {
+  color: #66CC00;
+/* Green for Available */
+    display: inline-block;
+    width: 15%;
+    border-top: 1px solid #ccc;
+    vertical-align: top;
+    padding-top: 30px;
+       text-align: right;
+}
+
+div.bidtable span.nostatus {
+  color: #FF0000;
+/* RED for Unavailable */
+    display: inline-block;
+    width: 15%;
+    border-top: 1px solid #ccc;
+    vertical-align: top;
+    padding-top: 30px;
+    text-align: right;
+}
+
+div.bidtable span.name {
+    display: inline-block;
+    width: 20%;
+    border-top: 1px solid #ccc;
+    vertical-align: top;
+    padding-top: 10px;
+
+}
+
+div.bidtable span.location {
+    display: inline-block;
+    width: 20%;
+    border-top: 1px solid #ccc;
+    vertical-align: top;
+    padding-top: 10px;
+
+}
+div.bidtable span.rating {
+    display: inline-block;
+    width: 20%;
+    border-top: 1px solid #ccc;
+    vertical-align: top;
+    padding-top: 10px;
+    text-align: center;
+}
+div.bidtable span.jobs_completed {
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    vertical-align: top;
+    padding-top: 10px;
+}
+div.bidtable span.amount {
+    display: inline-block;
+    text-align: center;
+    width: 18%;
+    border-top: 1px solid #ccc;
+    vertical-align: top;
+    padding-top: 10px;
+}
+div.bidtable span.tagline {
+    display: block;
+    width: 100%;
+    vertical-align: top;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+div.bidfeed {
+    width: 71%;
+    margin: auto;
+    background: #ffffff;
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.user_searchbox {
+    width: 25%;
+    padding: 1em;
+    background: #DA987A;
+    display: inline-block;
+}
+
+div.place_bid {
+  width: 30%;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #666;
+  background: #eee;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+span.no_results {
+    display: block;
+    margin-top: 15px;
+
 }

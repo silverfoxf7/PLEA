@@ -11,14 +11,28 @@
 #  encrypted_password :string(255)
 #  salt               :string(255)
 #  admin              :boolean
-#
+#    add_column :users, :real_name, :string
+#    add_column :users, :status, :integer
+#    add_column :users, :skills, :text
+#    add_column :users, :location, :string
+#    add_column :users, :rating, :integer
+#    add_column :users, :jobs_completed, :integer
+#    add_column :users, :tagline, :text
+#    add_column :users, :skill1, :string
+#    add_column :users, :skill2, :string
+#    add_column :users, :skill3, :string
+#    add_column :users, :resume, :text
 
 class User < ActiveRecord::Base
   attr_accessor   :password
-  attr_accessible :name, :email, :password, :password_confirmation  
+  attr_accessible :name, :email, :password, :password_confirmation,
+                  :real_name, :status, :skills, :location, :tagline, 
+                  :skill1, :skill2, :skill3, :resume
   #allows users to enter/change their name & email, pswd
 
   has_many :bids,          :dependent => :destroy
+  accepts_nested_attributes_for :bids
+
   has_many :jobposts,      :dependent => :destroy
   has_many :microposts,    :dependent => :destroy
   has_many :relationships, :dependent => :destroy,

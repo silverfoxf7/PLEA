@@ -8,6 +8,7 @@ gem 'will_paginate', '3.0.pre2'
 gem 'jquery-rails'
 gem 'meta_where'
 gem 'meta_search'
+gem 'activemerchant'
 
 group :development do
   gem 'rspec-rails', '2.5.0'

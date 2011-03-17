@@ -18,16 +18,52 @@ def make_users
   admin = User.create!(:name => "Example User",
                        :email => "example@railstutorial.org",
                        :password => "foobar",
-                       :password_confirmation => "foobar")
+                       :password_confirmation => "foobar",
+                       :real_name => "Joe Vasquez",
+                 :status => 1,
+                 :skills => "Spanish, Document Reviews, Patents",
+                 :location => "New York, NY",
+                 :rating => 999,
+                 :jobs_completed => 32,
+                 :tagline => "Ivy League, former Big Law attorney,
+                              Patent litigator",
+                 :skill1 => "Patent Litigation",
+                 :skill2 => "Electrical Engineering",
+                 :skill3 => "Spanish Speaker",
+                 :resume => Faker::Lorem.paragraph(5))
+
   admin.toggle!(:admin)
   99.times do |n|
-    name  = Faker::Name.name
+    name  = Faker::Lorem.words(2)  # refers to USERNAME
     email = "example-#{n+1}@railstutorial.org"
     password  = "password"
+    real_name   = Faker::Name.name   # is the REAL name
+    location    = Faker::Lorem.sentence(1) 
+    status      = rand(2) # available = 1;  not-available = 0
+    skills =    Faker::Lorem.paragraph(5) 
+    rating =  (1 + rand(1000))   # is 1000/100
+    jobs_completed = rand(50)
+    tagline = Faker::Lorem.paragraph(2)
+    skill1 = Faker::Lorem.sentence(1)
+    skill2 = Faker::Lorem.sentence(1)
+    skill3 = Faker::Lorem.sentence(1)
+    resume = Faker::Lorem.paragraph(6)
+
     User.create!(:name => name,
                  :email => email,
                  :password => password,
-                 :password_confirmation => password)
+                 :password_confirmation => password,
+                 :real_name => real_name,
+                 :status => status,
+                 :skills => skills,
+                 :location => location,
+                 :rating => rating,
+                 :jobs_completed => jobs_completed,
+                 :tagline => tagline,
+                 :skill1 => skill1,
+                 :skill2 => skill2,
+                 :skill3 => skill3,
+                 :resume => resume)
   end
 end
 

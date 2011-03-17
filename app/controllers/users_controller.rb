@@ -10,8 +10,11 @@ class UsersController < ApplicationController
 #    @users = User.all
 #  we introduced the paginate method using the 'will_paginate' gem.
 #  now instead of User.all, which is an array, we will use the following:
-    @users = User.paginate(:page => params[:page])
+
+#    @users = User.paginate(:page => params[:page])
     @title = "All Users"
+    @user_search = User.search(params[:search])
+    @users = @user_search.paginate(:page => params[:page])
   end
 
   def show

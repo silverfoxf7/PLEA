@@ -1,19 +1,16 @@
 <table class "profile" summary="Profile Information">
 	<tr>
 		<td class="main">
-			<h1> 
+			<h1>
 				<%= gravatar_for @user %>
 				<%= @user.name %>
 			</h1>
 			<%= render 'follow_form' if signed_in? %>
+                        <table class "userprofile" summary="user profile">
+			<%= render 'user_profile' %>
+                        </table>
 
-                        Profile Goes Here:  <br/>
-                        * Bio <br/>
-                        * Resume <br/>
-                        * Rating <br/>
-                        * Location <br/>
-                        * Etc. <br/>
-			<% if @user.jobposts.any? %>
+                        <% if @user.jobposts.any? %>
 				<table class="jobposts" summary="User jobposts"> 
 					<%= render @jobposts %>
 
@@ -29,16 +26,7 @@
 				<%= will_paginate @microposts %>
 			<% end %>
 			
-		</td>
-		
-		<td class="sidebar round">
-			<strong>Name</strong> <%= @user.name %> <br />
-			<strong>URL</strong>  <%= link_to user_path(@user), @user %> <br />
-			<strong>Number of Projects</strong> <%= @user.jobposts.count %><br/>
-			<strong>Number of Bids</strong> <%= @user.bids.count %><br/>
-			<%= render 'shared/stats' %>
-		</td>
-		
+		</td>	
 	</tr>
 </table>
 

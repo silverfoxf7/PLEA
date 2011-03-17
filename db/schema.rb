@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110308111931) do
+ActiveRecord::Schema.define(:version => 20110313225227) do
 
   create_table "bids", :force => true do |t|
     t.integer  "amount"
@@ -83,6 +83,17 @@ ActiveRecord::Schema.define(:version => 20110308111931) do
     t.string   "encrypted_password"
     t.string   "salt"
     t.boolean  "admin",              :default => false
+    t.string   "real_name"
+    t.integer  "status"
+    t.text     "skills"
+    t.string   "location"
+    t.integer  "rating"
+    t.integer  "jobs_completed"
+    t.text     "tagline"
+    t.string   "skill1"
+    t.string   "skill2"
+    t.string   "skill3"
+    t.text     "resume"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

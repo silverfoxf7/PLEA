@@ -42,6 +42,10 @@ private
     end
   end
 
+  def bidder_cannot_be_poster
+    # if jobpost.user_id == current_user then NO; else proceed.
+  end
+
   def one_bid_per_user  #checks whether bid is too high and whether bid more than 1?
     @bid_count = 0
     @job = Jobpost.find(@bidcheck.jobpost_id)
