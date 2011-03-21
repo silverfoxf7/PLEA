@@ -1,7 +1,11 @@
 <%= render 'shared/error_messages', :object => f.object %>
 
 <div class="field">
-	<%= f.label :name, "Username" %>  <br />
+        <b>Account Type:</b> Placement Agency <br />
+</div>
+
+<div class="field">
+	<%= f.label :name %>  <br />
 	<%= f.text_field :name %>
 </div>
 
@@ -22,10 +26,21 @@
 </div>
 
 <div class="field">
-	<%= f.label :account_type %>  <br />
-        <%= f.radio_button :account_type, '1' %>Freelance Attorney <br/>
-        <%= f.radio_button :account_type, '2' %>Placement Agency<br/>
-        <%= f.radio_button :account_type, '3' %>Law Firm<br/>
-        <%= f.radio_button :account_type, '4' %>Client<br/>
+	<%= f.label :real_name, "Agency Name" %>  <br />
+	<%= f.text_field :real_name %>
 </div>
 
+<div class="field">
+	<%= f.label :location, "Please enter your ZIP code" %>  <br />
+	<%= f.text_field :location %>
+</div>
+
+<div class="field">
+	<%= f.label :tagline, "Enter a short tagline" %>  <br />
+	<%= f.text_area :tagline %>
+</div>
+
+<div class="field">
+	<%= f.label :resume, "Insert Bio" %>  <br />
+	<%= f.text_area :resume %>
+</div>

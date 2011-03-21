@@ -3,7 +3,7 @@ class BidsController < ApplicationController
   before_filter :authorized_user, :only => :destroy
   before_filter :bid_amount_check, :only => :create
   before_filter :one_bid_per_user, :only => :create
-
+  before_filter :bidder_cannot_be_poster, :only => :create
 
   def create  #literally creates the bid, whereas "new" is for a new post page
 #    @bid = current_user.bids.build(params[:bid])
@@ -43,7 +43,16 @@ private
   end
 
   def bidder_cannot_be_poster
-    # if jobpost.user_id == current_user then NO; else proceed.
+    # if jobpost.user_id == current_user then NO proceed.
+    @job = Jobpost.find(@bidcheck.jobpost_id)
+    if @job.user_id == current_user.id
+      @bid = current_user.bids.new(params[:bid]) #no save.
+      redirect_to :back, :alert => "You cannot bid on your own project."
+      #Q: is this the best place to do this? Shouldn't even allow person to bid.
+      # consider altering the HTML based on bid_count so that SUBMIT not shown.
+    else
+      @bid = current_user.bids.build(params[:bid])
+    end
   end
 
   def one_bid_per_user  #checks whether bid is too high and whether bid more than 1?
@@ -56,7 +65,7 @@ private
         @bid_count = @bid_count + 1
       end
     end
-# now check counter to see if this user has previous posts. 
+# now check counter to see if this user has previous posts.
     if @bid_count < 1  # no previous posts, then build
       @bid = current_user.bids.build(params[:bid])
     else

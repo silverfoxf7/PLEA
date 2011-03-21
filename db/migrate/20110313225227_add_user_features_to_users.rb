@@ -11,6 +11,7 @@ class AddUserFeaturesToUsers < ActiveRecord::Migration
     add_column :users, :skill2, :string
     add_column :users, :skill3, :string
     add_column :users, :resume, :text
+    add_column :users, :account_type, :integer
   end
 
   def self.down
@@ -25,5 +26,6 @@ class AddUserFeaturesToUsers < ActiveRecord::Migration
     remove_column :users, :skills
     remove_column :users, :status
     remove_column :users, :real_name
+    remove_column :users, :account_type
   end
 end

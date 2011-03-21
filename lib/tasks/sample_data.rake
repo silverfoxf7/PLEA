@@ -30,7 +30,8 @@ def make_users
                  :skill1 => "Patent Litigation",
                  :skill2 => "Electrical Engineering",
                  :skill3 => "Spanish Speaker",
-                 :resume => Faker::Lorem.paragraph(5))
+                 :resume => Faker::Lorem.paragraph(5),
+                 :account_type => 1)
 
   admin.toggle!(:admin)
   99.times do |n|
@@ -48,6 +49,7 @@ def make_users
     skill2 = Faker::Lorem.sentence(1)
     skill3 = Faker::Lorem.sentence(1)
     resume = Faker::Lorem.paragraph(6)
+    account_type = (1 + rand(4))
 
     User.create!(:name => name,
                  :email => email,

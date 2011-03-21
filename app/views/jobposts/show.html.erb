@@ -67,6 +67,7 @@
   </h3></center> <br/>
 <% end %>
 
+<% if @job.user_id == current_user.id %>
   <h3>Current Bids</h3>
   <%= sort_link @sortbidders, :name %> |
   <%= sort_link @sortbidders, :bids_amount %> |
@@ -99,3 +100,4 @@
                                                    :confirm => "You sure?",
                                                    :title => @job.title %>
               <% end %>
+<% end %>

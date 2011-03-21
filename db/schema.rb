@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110313225227) do
+ActiveRecord::Schema.define(:version => 20110321120411) do
 
   create_table "bids", :force => true do |t|
     t.integer  "amount"
@@ -94,8 +94,20 @@ ActiveRecord::Schema.define(:version => 20110313225227) do
     t.string   "skill2"
     t.string   "skill3"
     t.text     "resume"
+    t.integer  "account_type"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+
+  create_table "winationships", :force => true do |t|
+    t.integer  "job_id"
+    t.integer  "worker_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "winationships", ["job_id", "worker_id"], :name => "index_winationships_on_job_id_and_worker_id", :unique => true
+  add_index "winationships", ["job_id"], :name => "index_winationships_on_job_id"
+  add_index "winationships", ["worker_id"], :name => "index_winationships_on_worker_id"
 
 end

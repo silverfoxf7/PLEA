@@ -1,6 +1,7 @@
 class JobpostsController < ApplicationController
   before_filter :authenticate, :only => [:create, :new, :destroy, :edit, :update]
   before_filter :authorized_user, :only => :destroy
+  before_filter :only_poster_user, :only => [:new, :edit, :destroy, :update]
   
   def index
     # page to show all projects (aka BROWSE)
@@ -79,6 +80,11 @@ private
     redirect_to root_path unless current_user?(@jobpost.user)
   end
 
+  def only_poster_user
+    if current_user.account_type == 1 # this is the freelance attorney
+        redirect_to root_path, :flash => {:error => "You cannot post a project."}
+    end
+  end
 
   def sort_column
     Jobpost.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
