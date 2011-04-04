@@ -11,6 +11,7 @@ namespace :db do
     make_bids
     make_microposts
     make_relationships
+    make_winationships
   end
 end
 
@@ -65,7 +66,8 @@ def make_users
                  :skill1 => skill1,
                  :skill2 => skill2,
                  :skill3 => skill3,
-                 :resume => resume)
+                 :resume => resume,
+                 :account_type => account_type)
   end
 end
 
@@ -139,6 +141,13 @@ def make_relationships
   followers = users[3..40]
   following.each { |followed| user.follow!(followed) }
   followers.each { |follower| follower.follow!(user) }
+end
+
+def make_winationships
+  users = User.all
+  winners = users[1..10]
+  job = Jobpost.find(60)
+  winners.each { |worker| job.pick_winner!(worker) }
 end
 
 def rand_int(from, to)

@@ -610,6 +610,14 @@ div.bidfeed {
     vertical-align: top;
 }
 
+div.escrow {
+    width: 100%;
+    margin: auto;
+    background: #ffffff;
+    display: inline-block;
+    vertical-align: top;
+}
+
 div.user_searchbox {
     width: 25%;
     padding: 1em;

@@ -1,18 +1,19 @@
 <center><h1>Browse Projects</h1></center>
 
-<% if current_user.account_type != 1 %>
-  <%= link_to "Post a New Project", post_project_path, :class => "postproject_button round" %>
+<% if signed_in? %>
+  <% if current_user.account_type != 1 %>
+    <%= link_to "Post a New Project", post_project_path, :class => "postproject_button round" %>
+  <% end %>
 <% end %>
+          <table class="font" summary="For signed-in users">
+                  <tr>
+                          <td class="searchbox round">
+                                  <%= render 'shared/jobsearch' %>
+                          </td>
 
-	<table class="font" summary="For signed-in users">
-		<tr>
-                        <td class="searchbox round">
-                                <%= render 'shared/jobsearch' %>
-                        </td>
-
-			<td class "main">
-				<%= render 'shared/jobfeed' %>
-				</br>
-			</td>
-		</tr>
-	</table>
+                          <td class "main">
+                                  <%= render 'shared/jobfeed' %>
+                                  </br>
+                          </td>
+                  </tr>
+          </table>

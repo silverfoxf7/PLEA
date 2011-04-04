@@ -36,6 +36,33 @@ class JobpostsController < ApplicationController
     @bidders = @sortbidders.paginate(:per_page => 30, :page => params[:page])
   end
 
+  def winners # page to show individual projects by ID
+    @test = Jobpost.new #this is fake until we get ACH/CC payments done
+#   @jobpost is referenced in _ACH_form.html.erb;  it is FAKE!
+    @bid = Bid.new if signed_in?
+    @title = "Projects"
+    @job = Jobpost.find(params[:id])
+    @winners = @job.workers.paginate(:per_page => 30, :page => params[:page])
+#    @winners_amounts = @winners
+    # stores all of the search results
+    @jobfeed_items = @job
+    @sortbidders = User.joins(:bids).
+                  where(:bids => {:jobpost_id => params[:id]}).
+                  search(params[:search])
+    @bidders = @sortbidders.paginate(:per_page => 30, :page => params[:page])
+    @commission = 0.10
+    @amount_owed = 0
+    
+    @winners.each do |winner|
+      @amount_owed = @amount_owed +
+                     Bid.where({:jobpost_id => params[:id],
+                                :user_id => winner.id}).
+                     first.amount*@job.work_intensity
+    end
+    @collectible_amount = @amount_owed*@commission
+  end
+
+
   def new
     # page to make a new project page (post_project)
     @title = "Post a New Project"

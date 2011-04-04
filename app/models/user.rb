@@ -44,7 +44,14 @@ class User < ActiveRecord::Base
                            :foreign_key => "followed_id",
                            :class_name => "Relationship"
                            # class_name tells Rails to fake the reverse_relationships model
-                          
+
+  has_many :reverse_winationships, :dependent => :destroy,
+                           :foreign_key => "worker_id",
+                           :class_name => "Winationship"
+                           # class_name tells Rails to fake the reverse_relationships model
+  has_many :billable_jobs, :through => :reverse_winationships, :source => :jobpost
+
+
   has_many :following, :through => :relationships, 
                        :source => :followed
   has_many :followers, :through => :reverse_relationships, 

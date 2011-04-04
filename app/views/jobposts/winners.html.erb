@@ -1,4 +1,6 @@
-<h3>Project: <%= @job.title %></h3>
+<center><h3>Complete Your Transaction for</h3></center>
+<center><h3><%= @job.title %></h3></center>
+                                
     
 <table class="jobposts" summary="User jobposts">
   <tr>
@@ -55,56 +57,33 @@
   </table>
 
 <% if signed_in? %>
-  <div class="place_bid">
-          <h3 class="micropost">Place a bid on this project:</h3>
-          <%= render 'shared/bidpost_form' %>
-  </div>
 
     <% if @job.user_id == current_user.id %>
+      <h3>You chose the following attorneys:</h3>
 
-      <center><h3><a href="<%= winners_jobpost_path(params[:id]) %>">
-          Finished Building My Team </a></h3>
-      </center>
-
-<h3>Current Bids</h3>    
-
-      <%= sort_link @sortbidders, :name %> |
-      <%= sort_link @sortbidders, :bids_amount %> |
-      <%= sort_link @sortbidders, :location %> |
-      <%= sort_link @sortbidders, :rating %> |
-      <%= sort_link @sortbidders, :jobs_completed %></br>
-
-    <% if @bidders.any? %>
-      <div class="bidfeed">
-      <%= render :partial => 'shared/bidder', :collection => @bidders %><br/>
-      <%#= render :partial => 'shared/bidfeed_item', :collection => @bidfeed_items %>
+    <% if @winners.any? %>
+      <div class="escrow">
+        <%= render :partial => 'shared/finish_transaction', :collection => @winners %><br/>
       </div>
+      <p></p>
+      <p>Please escrow <b><%= number_to_currency(@amount_owed) %></b>
+      based on the expected number of hours you have alloted for your project.
+      The money will be released to the contract attorneys pending your
+      approval of their time sheets. </p>
+      <p>Based on our commission of
+      <b><%= number_to_percentage(@commission*100, :precision => 2) %></b>,
+      we will take
+      <b><%= number_to_currency(@collectible_amount) %> </b>
+      from the escrowed amount.</p>
+
+      <%= render 'shared/ach_form' %>
+      
     <% else %>
           <div class="bidfeed">
           <span class="no_results">
-            <p>We're sorry but there are no results.</p>
+            <p>We're sorry but you have not selected any winners.</p>
           </span>
         </div>
     <% end %>
-
-      <div class="user_searchbox round">
-        <%= render 'shared/bidsearch' %>
-      </div>
-      <%= will_paginate @bidders %>
-
-
-                  <% if current_user?(@job.user) %>
-         <br/>
-                      <%= link_to "Delete Post", @job, :method => :delete,
-                                                       :confirm => "You sure?",
-                                                       :title => @job.title %>
-                  <% end %>
-    <% end %>
-
-<% else %>
-
-    <center><h3>
-        Please <%= link_to "sign-up", signup_path %> or
-               <%= link_to "sign-in", signin_path %> to bid on this project.
-    </h3></center> <br/>
+  <% end %>
 <% end %>

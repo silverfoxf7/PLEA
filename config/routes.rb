@@ -2,9 +2,11 @@ SampleApp::Application.routes.draw do
  
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :billable_jobs
     end
-    # gets pages for users/1/followers, . . ., users/199/followers . . . 
+    # gets pages for users/1/followers, . . ., users/199/followers . . .
+    # named route = following_user_path(1)
+    # named route = billable_jobs_user_path(1)
   end
  
   resources :sessions,   :only => [:new, :create, :destroy]
@@ -14,6 +16,9 @@ SampleApp::Application.routes.draw do
 
 #################################
           resources :jobposts do
+            member do
+              get :winners
+            end
               resources :bids #, :only => [:create, :destroy]
           end
 
@@ -23,6 +28,7 @@ SampleApp::Application.routes.draw do
 #################################
 
   resources :relationships, :only => [:create, :destroy]
+  resources :winationships, :only => [:create, :destroy]
   
   root :to => "pages#home"  
 

@@ -1,6 +1,7 @@
 <div class="bidtable">
-      <span class="name"><br><b>Username</b></br>
-        <%= link_to bidder.name, bidder %>
+
+  <span class="name"><br><b>Username</b> <br />
+        <%= link_to bidder.name, bidder %><br />
       </span>  
 
       <span class="amount"><br><b>Amount</b></br>
@@ -22,9 +23,16 @@
             bidder.jobs_completed : "--" %>
       </span> 
 
+      <span class="tagline">
+          <% if @job.winner?(bidder.id) %>
+            <%= render 'fire', :bidder => bidder %>
+        <% else %>
+            <%= render 'hire', :bidder => bidder %>
+        <% end %>
+    </span>
+
     <span class="tagline"><b>Tagline:</b> 
         <%= bidder.tagline %>
     </span>
-
 
   </div>
