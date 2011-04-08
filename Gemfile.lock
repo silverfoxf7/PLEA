@@ -126,6 +126,7 @@ DEPENDENCIES
   faker
   gravatar_image_tag
   jquery-rails
+  mail
   meta_search
   meta_where
   rails (= 3.0.3)

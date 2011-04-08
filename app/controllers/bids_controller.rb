@@ -8,12 +8,14 @@ class BidsController < ApplicationController
   def create  #literally creates the bid, whereas "new" is for a new post page
 #    @bid = current_user.bids.build(params[:bid])
       if @bid.save
-        flash[:success] = "Bid Submitted!"
+#       include the ActionMailer here!
+        UserMailer.apply_for_job(current_user, @job, @bid).deliver
+        flash[:success] = "Application Submitted!"
         redirect_to :back
 # redirects back to the project that you posted at
       else
         @bidfeed_items = []
-        redirect_to :back, :alert => "Please enter an appropriate bid."
+        redirect_to :back, :alert => "Please submit an appropriate application."
       end
   end
 
@@ -34,12 +36,15 @@ private
 #    instantiates new bid, but does not save to DB
     @job = Jobpost.find(@bidcheck.jobpost_id)
 #    finds current jobpost we're talking about
-    if @bidcheck.amount <= @job.max_budget
-      @bid = current_user.bids.build(params[:bid])
-    else
-      @bid = current_user.bids.new(params[:bid]) #no save.
-      redirect_to :back, :alert => "You exceeded the max budget. Please enter a new bid."
-    end
+
+#  currently focusing on :message, rather than bid :amount.  Thus, do
+#  not need to check the BID AMOUNT.  *******************
+#    if @bidcheck.amount <= @job.max_budget
+#      @bid = current_user.bids.build(params[:bid])
+#    else
+#      @bid = current_user.bids.new(params[:bid]) #no save.
+#      redirect_to :back, :alert => "You exceeded the max budget. Please enter a new bid."
+#    end
   end
 
   def bidder_cannot_be_poster
@@ -47,7 +52,7 @@ private
     @job = Jobpost.find(@bidcheck.jobpost_id)
     if @job.user_id == current_user.id
       @bid = current_user.bids.new(params[:bid]) #no save.
-      redirect_to :back, :alert => "You cannot bid on your own project."
+      redirect_to :back, :alert => "You cannot apply for your own project."
       #Q: is this the best place to do this? Shouldn't even allow person to bid.
       # consider altering the HTML based on bid_count so that SUBMIT not shown.
     else
@@ -70,7 +75,7 @@ private
       @bid = current_user.bids.build(params[:bid])
     else
       @bid = current_user.bids.new(params[:bid]) #no save.
-      redirect_to :back, :alert => "You have already bid on this project."
+      redirect_to :back, :alert => "You have already applied for this project."
       #Q: is this the best place to do this? Shouldn't even allow person to bid.
       # consider altering the HTML based on bid_count so that SUBMIT not shown.
     end

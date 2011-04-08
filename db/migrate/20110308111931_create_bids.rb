@@ -4,6 +4,9 @@ class CreateBids < ActiveRecord::Migration
       t.integer :amount # the amount of the bid for a project
       t.integer :user_id  # ID of the person posting a bid
       t.integer :jobpost_id # ID of the project being bid on
+      t.string  :message # include a message from user to project being bid on
+
+      # may need to upgrade :message to "text" rather than "string"
 
       t.timestamps
     end

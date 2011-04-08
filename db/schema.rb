@@ -10,12 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110321120411) do
+ActiveRecord::Schema.define(:version => 20110406104739) do
 
   create_table "bids", :force => true do |t|
     t.integer  "amount"
     t.integer  "user_id"
     t.integer  "jobpost_id"
+    t.string   "message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20110321120411) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
   end
 
   add_index "jobposts", ["description"], :name => "index_jobposts_on_description"

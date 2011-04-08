@@ -19,6 +19,7 @@
 #  start_date  :datetime
 #  overtime    :boolean
 #  work_intensity :integer
+#  email        :string
 #
 #  object.strftime("Printed on %m/%d/%Y")   #=> "Printed on 11/19/2007"
 #  add an expected start_date
@@ -33,7 +34,7 @@ class Jobpost < ActiveRecord::Base
 
   attr_accessible :title, :location, :poster, :description, :work_type, 
                   :max_budget, :duration, :skills, :start_date, :overtime,
-                  :work_intensity
+                  :work_intensity, :email
   
   belongs_to :user
   has_many :bids,          :dependent => :destroy
@@ -72,6 +73,13 @@ class Jobpost < ActiveRecord::Base
          #  timeframe   :datetime
   
   validates :user_id, :presence => true
+
+
+  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  validates :email, :presence => true,
+                    :format => { :with => email_regex }
+
 
   def winner?(worker)
     self.winationships.find_by_worker_id(worker)

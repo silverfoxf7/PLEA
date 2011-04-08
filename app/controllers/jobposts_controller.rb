@@ -34,6 +34,16 @@ class JobpostsController < ApplicationController
                   where(:bids => {:jobpost_id => params[:id]}).
                   search(params[:search])
     @bidders = @sortbidders.paginate(:per_page => 30, :page => params[:page])
+
+#   Pre-load the text_area with PLE information.
+      @bid.message =
+"I found your project on PremiumLegalExchange.com. Please contact me about '#{@job.title}.'
+
+Attached is my resume for your consideration.
+
+Thank you,
+#{current_user.real_name}"
+
   end
 
   def winners # page to show individual projects by ID
@@ -80,7 +90,7 @@ class JobpostsController < ApplicationController
         redirect_to projects_path  # re-directing to projects#index
       else
         @jobfeed_items = []
-        render 'jobposts/post_project'
+        render 'jobposts/new'
         # perhaps using render (rather than redirect_to) because this way
         # we can see the errors that are being shown in FLASH msg.
       end

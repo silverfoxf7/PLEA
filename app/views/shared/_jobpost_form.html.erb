@@ -3,6 +3,7 @@
   <div class="field">
     <%= f.label :title %>: <br /><%= f.text_field :title %> <br />
     <%= f.label :location %>: <br /> <%= f.text_field :location %> <br />
+    <%= f.label :email, "Reply-To Email" %>: <br /> <%= f.text_field :email %> <br />
     <%= f.label :poster %>: <br /> <%= @jobpost.poster = current_user.name %>
     			     <%= f.hidden_field :poster %> <br />
     <%= f.label :work_type %>: <br /> <%= f.text_field :work_type %> <br />

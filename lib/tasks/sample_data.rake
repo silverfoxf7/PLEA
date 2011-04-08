@@ -75,6 +75,7 @@ def make_jobposts
   User.all(:limit => 30).each do |user|
     2.times do
       title       = Faker::Lorem.sentence(1) # => "Big Document Review Project",
+      email       = "#{Faker::Lorem.words(1)}@foo.com"
       location    = Faker::Lorem.sentence(1) #=> "New York, NY",
       poster      = user.name #=> the name of the user with user_id,
       description = Faker::Lorem.paragraph(5) #=> "This is a document review project.",
@@ -96,6 +97,7 @@ def make_jobposts
       start_date          = rand_time(5.days.from_now, 5.weeks.from_now)
       overtime            = [true,false][rand(2)]
       work_intensity      = (1 + rand(100))
+
       user.jobposts.create!(
                   :title       => title,
                   :location    => location,
@@ -107,7 +109,8 @@ def make_jobposts
                   :skills      => skills,
                   :start_date  => start_date,
                   :overtime    => overtime,
-                  :work_intensity => work_intensity)
+                  :work_intensity => work_intensity,
+                  :email       => email)
     end
   end
 end
