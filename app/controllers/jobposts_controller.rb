@@ -37,12 +37,14 @@ class JobpostsController < ApplicationController
 
 #   Pre-load the text_area with PLE information.
       @bid.message =
-"I found your project on PremiumLegalExchange.com. Please contact me about '#{@job.title}.'
+        "<p>I found your project on
+        <a href='premiumlegalexchange.com'>Premium Legal Exchange</a>.
+        Please contact me about '#{@job.title}.'</p>
 
-Attached is my resume for your consideration.
+        <p>Attached is my resume for your consideration.</p>
 
-Thank you,
-#{current_user.real_name}"
+        Thank you,<br />
+        #{current_user.real_name}<br />"
 
   end
 

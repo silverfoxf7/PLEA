@@ -17,9 +17,11 @@ class UserMailer < ActionMailer::Base
 #    Attachments not currently working; F/U with Google search on subject
     mail(
 #         :from => user.email,
+#         :bcc => user.email,
+#  this was commented out due to a EOFError; cannot set From: using
+#  GoDaddy's SMTP settings.
          :to => @job.email,
          :cc => user.email,
-#         :bcc => user.email,
          :subject => "Applying for '#{@job.title}' via PLE"
         )
   end

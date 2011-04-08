@@ -16,8 +16,8 @@ ActionMailer::Base.smtp_settings = {
 :authentication => :plain
 }
 
-ActionMailer::Base.default_url_options[:host] = "localhost:3000"
-#ActionMailer::Base.default_url_options[:host] = "plea.heroku.com"
+ActionMailer::Base.default_url_options[:host] = "plea.heroku.com"
+ActionMailer::Base.default_url_options[:host] = "localhost:3000" if Rails.env.development?
 # Change to "plea.heroku.com" for deployment.
 
 #Mail.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?

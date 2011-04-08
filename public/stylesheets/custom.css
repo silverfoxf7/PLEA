@@ -83,7 +83,7 @@ a.signup_button {
   text-align: center;
   width: 190px;
   color: #fff;
-  background: #DA987A;
+  background: #DAB220;
   font-size: 150%;
   font-weight: bold;
   padding: 10px;
@@ -127,7 +127,7 @@ td.sidebar {
 	width: 30%;
 	padding: 1em;
 	vertical-align: top;
-	background: #DA987A;
+	background: #DAB220;
 }
 
 .profile img.gravatar {
@@ -386,13 +386,13 @@ form.new_jobpost textarea {
 
 /* Left Content Search Box */
 
-
-
 td.searchbox {
 	width: 30%;
 	padding: 1em;
 	vertical-align: top;
-	background: #DA987A;
+/*	background: #DA987A;*/
+	background: #DAB220;
+
 }
 
 
@@ -414,7 +414,7 @@ a.postproject_button {
   text-align: center;
   width: 190px;
   color: #fff;
-  background: #DA987A;
+  background: #DAB220;
   font-size: 110%;
   font-weight: bold;
   padding: 10px;
@@ -424,7 +424,7 @@ td.user_searchbox {
     width: 30%;
     padding: 1em;
     vertical-align: top;
-    background: #DA987A;
+    background: #DAB220;
 }
 
 td.user_profile span.real_name {
@@ -621,12 +621,13 @@ div.escrow {
 div.user_searchbox {
     width: 25%;
     padding: 1em;
-    background: #DA987A;
+/*    background: #DAB220;*/
+    background: #DAB220;
     display: inline-block;
 }
 
 div.place_bid {
-  width: 45%;
+  width: 51%;
   margin: auto;
   padding: 20px;
   border: 1px solid #666;
