@@ -15,9 +15,11 @@ class UserMailer < ActionMailer::Base
     @bid = bid
 #    attachments["logo.png"] = File.read("#{Rails.root}/public/images/logo.png")
 #    Attachments not currently working; F/U with Google search on subject
-    mail(:from => user.email,
+    mail(
+#         :from => user.email,
          :to => @job.email,
-         :bcc => user.email,
+         :cc => user.email,
+#         :bcc => user.email,
          :subject => "Applying for '#{@job.title}' via PLE"
         )
   end
