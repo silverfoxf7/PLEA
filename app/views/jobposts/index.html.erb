@@ -1,19 +1,25 @@
-<center><h1>Browse Projects</h1></center>
+<!--body container starts-->
+<div id="body_container">
+    <!--project page box starts-->
+  <div id="inner_page">
+
+<h1 class="title_header">Browse Projects</h1>
 
 <% if signed_in? %>
   <% if current_user.account_type != 1 %>
     <%= link_to "Post a New Project", post_project_path, :class => "postproject_button round" %>
   <% end %>
 <% end %>
-          <table class="font" summary="For signed-in users">
-                  <tr>
-                          <td class="searchbox round">
-                                  <%= render 'shared/jobsearch' %>
-                          </td>
 
-                          <td class "main">
-                                  <%= render 'shared/jobfeed' %>
-                                  </br>
-                          </td>
-                  </tr>
-          </table>
+    <div class="search_projects round">
+      <%= render 'shared/jobsearch' %>
+    </div>
+
+    <div class="browse_projects round">
+      <%= render 'shared/jobfeed' %>
+    </div>
+
+  </div>
+    <!--project page box ends-->
+</div>
+<!--body container ends-->
