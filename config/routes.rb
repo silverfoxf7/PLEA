@@ -41,6 +41,7 @@ SampleApp::Application.routes.draw do
   match '/projects',  :to => 'jobposts#index'
  #match '/post_project',  :to => 'pages#post_project'
   match '/post_project',  :to => 'jobposts#new'
+  match '/preview_project',  :to => 'jobposts#preview'
   match '/signup',    :to => 'users#new'
   match '/signin',    :to => 'sessions#new'
   match '/signout',   :to => 'sessions#destroy'

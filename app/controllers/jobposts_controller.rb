@@ -84,6 +84,12 @@ class JobpostsController < ApplicationController
           # can probably comment this out @jobfeed_items
     end
   end
+  
+  def preview
+    # page to display a summary of the user's project prior to creating it
+	@job = current_user.jobposts.build(params[:jobpost])
+	
+  end
 
   def create  #literally creates the post, whereas "new" is for a new post
     @jobpost = current_user.jobposts.build(params[:jobpost])
